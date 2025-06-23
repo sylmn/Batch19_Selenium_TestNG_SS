@@ -44,6 +44,6 @@ public class C03_ByClassName {
  * 2. çoğunlukla birden fazla web elementin class name attribute değeri aynı olabiir. selenium bu durumda ilkine gider
  * ve işlem yapar
  * 3. unique olup olmadığını dev tool da ctrl+f classname değerinin başına "." işareti koyarak anlazrız
- * 4. class name değeri genellikle içerisinde boşluk içerir. burumda by.classname ile kulllanamayız --- css e başvurmak gerekir
+ * 4. class name değeri genellikle içerisinde boşluk içerir. bu durumda by.classname ile kullanamayız --- css e başvurmak gerekir
  *
  */
