@@ -27,7 +27,8 @@ public class C_01_AbsoluteXpath {
         addressBox.sendKeys("Manheim/Kolonya");
 
         //then take the value of address box area
-        String actualAddress = addressBox.getAttribute("value");
+        String actualAddress = addressBox.getAttribute("class");
+        System.out.println("actualAddress = " + actualAddress);
         String expectedAddress = "Manheim/Kolonya";
 
         if (actualAddress.equals(expectedAddress))

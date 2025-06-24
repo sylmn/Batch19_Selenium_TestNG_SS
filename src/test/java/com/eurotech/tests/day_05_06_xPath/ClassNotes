@@ -1,0 +1,20 @@
+Parent to child
+        /child::tagname
+        /tagname
+
+Child to parent
+        /parent::tagname
+        /..
+
+Sonraki kardeş
+        /following-sibling::tagname
+
+Önceki kardeş
+        /preceding-sibling::tagname
+
+
+Dededen toruna
+        /descendant::tagname
+
+Torundan ataya
+        /ancestor::tagname
