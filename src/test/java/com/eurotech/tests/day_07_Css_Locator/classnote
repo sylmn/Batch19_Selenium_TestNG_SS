@@ -1,0 +1,68 @@
+Basic Locators
+    id
+    classname
+    tagname
+    name
+    Linktext
+    Partial Linktext
+
+Advanced Locators
+    XPath
+    Css selector
+
+
+    HTML element
+        <tagname attribute=value, attribute=value> "text" />endTag
+                    id=Login    ,   class=form v2 d3
+
+Css Selector
+    id      --> #
+    class   --> .
+
+    note= Eğer class attribute value su içinde boşluk varsa yerine "." konularak aratılır   --->     .btn.btn-primary
+
+    tagname.classValue
+    tagname#idValue
+
+
+----------------------------------------
+
+        attribute='value'     -->  []
+        tagname[attribute='value']
+
+        birden çok attribute ile css locate etme
+
+        [attribute1='value1'][attribute2='value2']   -----> AND
+        tagname[attribute1='value1'][attribute2='value2']   -----> AND
+
+        [attribute1='value1'],[attribute2='value2']  -----> OR
+        tagname[attribute1='value1'],tagname[attribute2='value2']  -----> OR
+
+
+------------------------------------
+
+        [attribute*='Val']          ---->  *    --> means CONTAINS      --> attributeValue nun bir kısmını vermeniz yeterli
+        TAGNAME[attribute*='Val']   ---->  *    --> means CONTAINS
+
+        [attribute^='firstPartOfValue']     ---->   ^   ---> means startsWith    --> attributeValue nın başından bir kısmını koymanız yeterli
+        TAGNAME[attribute^='firstPartOfValue'] ---->   ^   ---> means startsWith
+
+        [attribute$='lastPartOfValue']     ---->   $   ---> means endsWith    --> attributeValue nın sonunda bir kısmını koymanız yeterli
+        TAGNAME[attribute$='lastPartOfValue']     ---->   $   ---> means endsWith
+
+
+        parent to child         ---->    ">"
+        parent to grandChild    ---->    " "  (space-boşluk)
+
+
+--------------------------------------
+
+    index yoluyla:
+
+        cssSyntax       ---->   :nth-of-type(indexnumber)
+        cssSyntax       ---->   :nth-child(indexnumber)
+
+        note: Bu sadece aynı parent element altındaki webElement ler için kullanılır
+
+        css following sibling   ---->   (~) tilde işareti (alt+126[numpad])
+            tagname[]~tagname[]
