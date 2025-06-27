@@ -1,0 +1,29 @@
+Test Levels
+    - Component Testing (Unit)  - developer
+    - Integration Testing       - developer
+    - System Testing            - Tester
+    - UAT Testing               - Tester, client, PO, BA
+
+
+TestNG - (Next Genaration Testing) - Unit Testing Tool
+    - Testleri düzenlemek, seçmek ve koşturmak (çalıştırmak)                ---> ( "@" - Annotations )
+    - Verification - doğrulama - actual ve expected karşılaştırması yapar   ---> ( Assert Class )
+    - Rapor oluşturma işlemlerini düzenler                                  ---> ( ExtentReport )
+
+
+        a.b+a.c+a.d= a(b+c+d)
+
+Java - TestNG - Junit
+Python  - Pytest
+C#  -   Nunit
+JS  -   Cypress
+
+
+
+    Assert Class Methods
+        AssertEquals        ---> actual ve expected ister - data tiplerini karşılaştırır
+        AssertNotEquals
+        AssertTrue          ---> boolean condition üzerinden değerlendirir
+        AssertFalse         ---> boolean condition üzerinden değerlendirir
+        AssertNull          ---> boolean condition üzerinden değerlendirir
+        AssertNotNull       ---> boolean condition üzerinden değerlendirir
