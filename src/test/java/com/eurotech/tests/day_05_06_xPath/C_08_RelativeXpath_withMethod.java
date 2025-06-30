@@ -40,4 +40,9 @@ public class C_08_RelativeXpath_withMethod {
         WebElement productAddToCart=driver.findElement(By.xpath("//a[text()='"+productName+"']/ancestor::div[@class='details']//input"));
         productAddToCart.click();
     }
+
+    private static void viewProduct(String product){
+        WebElement productView=driver.findElement(By.xpath("//p[text()='"+product+"']/ancestor::div[@class=\"product-image-wrapper\"]//li/a"));
+        productView.click();
+    }
 }
