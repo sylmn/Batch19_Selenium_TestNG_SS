@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class C01_CheckBoxes {
@@ -91,7 +92,7 @@ public class C01_CheckBoxes {
     }
 
     @Test
-    public void checkboxTest_Task(){
+    public void checkboxTest_Task() throws InterruptedException {
         /**
          * go to https://the-internet.herokuapp.com/checkboxes
          * locate both checkBoxes web elements
@@ -101,5 +102,22 @@ public class C01_CheckBoxes {
          * verify that checkbox 1 is selected
          * verify that checkbox 2 is NOT selected
          */
+
+        driver.get("https://the-internet.herokuapp.com/checkboxes");
+        Thread.sleep(2000);
+        //locate both checkBoxes web elements
+        WebElement checkBox1 = driver.findElement(By.cssSelector("#checkboxes>input:nth-child(1)"));
+        WebElement checkBox2 = driver.findElement(By.cssSelector("#checkboxes>input:nth-of-type(2)"));
+
+        Assert.assertFalse(checkBox1.isSelected(), "verify that checkbox 1 is NOT selected");
+        Assert.assertTrue(checkBox2.isSelected(), "verify that checkbox 2 is selected");
+
+        checkBox1.click();
+        Thread.sleep(2000);
+        checkBox2.click();
+        Thread.sleep(2000);
+
+        Assert.assertTrue(checkBox1.isSelected(), "verify that checkbox 1 is selected");
+        Assert.assertFalse(checkBox2.isSelected(), "verify that checkbox 2 is NOT selected");
     }
 }

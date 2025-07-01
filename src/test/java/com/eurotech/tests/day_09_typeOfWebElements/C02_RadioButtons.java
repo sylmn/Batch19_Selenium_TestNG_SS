@@ -14,7 +14,7 @@ public class C02_RadioButtons {
 
     @BeforeMethod
     public void setUp(){
-        driver= WebDriverFactory.getDriver("firefox");
+        driver= WebDriverFactory.getDriver("chrome");
     }
 
     @AfterMethod
@@ -72,7 +72,7 @@ public class C02_RadioButtons {
     }
 
     @Test
-    public void radioButtonTask() {
+    public void radioButtonTask() throws InterruptedException {
         /**
          * https://demoqa.com/automation-practice-form
          * locate female gender element
@@ -82,5 +82,25 @@ public class C02_RadioButtons {
          * verify that the element is selected
          * ipucu: eğer elementten istediğiniz sonucu alamıyorsanız.. aynı yeri gösteren diğer elementleri deneyin....!!!!
          */
+
+        driver.get("https://demoqa.com/automation-practice-form");
+
+        WebElement femaleRadioBtn = driver.findElement(By.cssSelector("[for=\"gender-radio-2\"]"));  //label
+        WebElement femaleRadioBtn_1 = driver.findElement(By.cssSelector("[value=\"Female\"]")); //input
+
+        //verify that the element is NOT selected
+        Assert.assertFalse(femaleRadioBtn_1.isSelected());
+        Thread.sleep(2000);
+
+        //verify that the element is displayed
+        Assert.assertTrue(femaleRadioBtn.isDisplayed());
+        Thread.sleep(2000);
+
+
+        femaleRadioBtn.click();
+        //verify that the element is selected
+        Thread.sleep(2000);
+
+        Assert.assertTrue(femaleRadioBtn_1.isSelected());
     }
 }

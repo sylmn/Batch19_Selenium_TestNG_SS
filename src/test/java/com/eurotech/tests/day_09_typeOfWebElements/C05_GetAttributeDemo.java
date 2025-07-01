@@ -73,6 +73,30 @@ public class C05_GetAttributeDemo {
          * getAttribute("value") metodu ile alabiliriz..)
          * NOT: getAttribute metodu ile bir web elementin texti alınamaz.. onun için getText() metodu kullanılır..
          */
+        driver.get("https://demoqa.com/text-box");
+
+        WebElement fullName = driver.findElement(By.id("userName"));
+
+        // istediğimiz attribute'a ait değeri almak için attribute name'i parametre olarak kullanırız..
+        System.out.println("fullName.getAttribute(\"type\") = " + fullName.getAttribute("type"));
+        System.out.println("fullName.getAttribute(\"autocomplete\") = " + fullName.getAttribute("autocomplete"));
+        System.out.println("-----------------------------");
+        //eğer elementte olmayan bir attribute'ün değerini almaya çalışırsak bize boş değer döndürür.
+        //eğer elementte olan ama değeri olmayan bir attribute'ün değerini almaya çalışırsak bize true döndürür.
+        System.out.println("fullName.getAttribute(\"name\") = " + fullName.getAttribute("name"));
+        System.out.println("-----------------------------");
+
+        // altında child ya da grnadchild'ı olmayan web elementler için "innerHTML" boş döner...
+        System.out.println("fullName.getAttribute(\"innerHTML\") = " + fullName.getAttribute("innerHTML"));
+        System.out.println("-----------------------------");
+
+        // altında child ya da grnadchild'ı olmayan web elementler için "outerHTML" sadece kendi bilgilerini döner..
+        System.out.println("fullName.getAttribute(\"outerHTML\") = " + fullName.getAttribute("outerHTML"));
+        System.out.println("-----------------------------");
+
+        fullName.sendKeys("Ahmet");
+        //input box'a gönderdiğimiz text'i almak istersek "value" parametresini kullanırız...
+        System.out.println("fullName.getAttribute(\"value\") = " + fullName.getAttribute("value"));
 }
 
 }

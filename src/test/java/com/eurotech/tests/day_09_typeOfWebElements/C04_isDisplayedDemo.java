@@ -75,6 +75,21 @@ public class C04_isDisplayedDemo {
          * get the element text and print it
          */
 
+        driver.get("https://the-internet.herokuapp.com/dynamic_loading");
+        Thread.sleep(1000);
 
+        driver.findElement(By.partialLinkText(" fact")).click();
+
+        WebElement startBtn = driver.findElement(By.xpath("//button[text()='Start']"));
+        startBtn.click();
+
+        Thread.sleep(5000);
+
+        // ilgili webElementi start button a tıkladıktan 5 sn sonra locate ederiz
+        // çünkü 5 sn sonra bu element artık DOM da bulunabilir oluyor.
+        // bunu yapmazsak NoSuchElement hatası alırız
+        WebElement helloWorldText = driver.findElement(By.xpath("//h4[text()='Hello World!']"));
+
+        System.out.println("helloWorldText.getText() = " + helloWorldText.getText());
     }
 }
