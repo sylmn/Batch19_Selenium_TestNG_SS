@@ -2,6 +2,7 @@ package com.eurotech.tests.day_10_listOfElements_dropdowns;
 
 import com.eurotech.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -125,7 +126,7 @@ public class C02_DropdownsWithSelectTag {
     }
 
     @Test
-    public void dropDownWithSelectTag_Task(){
+    public void dropDownWithSelectTag_Task() throws InterruptedException {
         /**    CLASS TASK
          * navigate to https://www.amazon.com.tr/"
          * accept cookies if any
@@ -135,7 +136,90 @@ public class C02_DropdownsWithSelectTag {
          * click (select) "Oyuncaklar ve Oyunlar" with index:16
          * verify that the selected option's text is 'PC ve Video Oyunları'
          */
+
+        driver.get("https://www.amazon.com.tr/");
+        //cookies
+        driver.findElement(By.id("sp-cc-accept")).click();
+        Thread.sleep(2000);
+
+        WebElement searchDropdownBox = driver.findElement(By.id("searchDropdownBox"));
+
+        Select select = new Select(searchDropdownBox);
+
+        List<WebElement> departments = select.getOptions();
+        departments.get(16).click();
+        WebElement firstSelectedOption = select.getFirstSelectedOption();
+
+        String actualText=firstSelectedOption.getText();
+        String expectedText="Oyuncaklar ve Oyunlar";
+
+        Assert.assertEquals(actualText,expectedText);
+
+        Assert.assertEquals(departments.size(),22);
+
+        /** select the "Baby" department by using visible text
+         * then verify the department name
+         */
+
+        select.selectByVisibleText("Bebek");
+        firstSelectedOption=select.getFirstSelectedOption();
+        actualText=firstSelectedOption.getText();
+        expectedText="Bebek";
+        Thread.sleep(2000);
+        Assert.assertEquals(actualText,expectedText);
+
+        /** select the "Kitaplar" department by using index 9
+         * then verify the department name
+         */
+
+        select.selectByIndex(9);
+        firstSelectedOption=select.getFirstSelectedOption();
+        actualText=firstSelectedOption.getText();
+        expectedText="Gıda ve İçecek";
+        Thread.sleep(2000);
+        Assert.assertEquals(actualText,expectedText);
+
+        /**
+         * second way
+         */
+        Assert.assertEquals(departments.get(9).getText(), expectedText);
+
+        //print all departments name
+        departments.forEach(e -> {
+            System.out.println(e.getText());
+        });
+
+        System.out.println("------------------------");
+
+        //print number of departments
+        System.out.println(departments.size());
+
+
+        /** select the "Otomotiv" department by using value attribute
+         * then verify the department name
+         */
+
+        select.selectByValue("search-alias=automotive");
+        firstSelectedOption=select.getFirstSelectedOption();
+        actualText=firstSelectedOption.getText();
+        expectedText="Otomotiv";
+        Thread.sleep(2000);
+        Assert.assertEquals(actualText,expectedText);
+
+        selectCategory("Bilgisayarlar");
+
     }
+    void selectCategory(String categoryName){
+        WebElement searchDropdownBox = driver.findElement(By.id("searchDropdownBox"));
+
+        Select select = new Select(searchDropdownBox);
+        select.selectByVisibleText(categoryName);
+
+        WebElement searchBar = driver.findElement(By.id("twotabsearchtextbox"));
+        searchBar.sendKeys(Keys.ENTER);
+
+    }
+
 }
 /**
  * AÇIKLAMALAR:

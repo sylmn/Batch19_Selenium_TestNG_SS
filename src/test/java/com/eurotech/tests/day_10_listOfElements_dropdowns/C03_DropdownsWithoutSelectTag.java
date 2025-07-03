@@ -57,7 +57,7 @@ public class C03_DropdownsWithoutSelectTag {
     }
 
     @Test
-    public void dropdownWithoutSelectTag_Task(){
+    public void dropdownWithoutSelectTag_Task() throws InterruptedException {
         /**
          * navigate to https://demoqa.com/select-menu
          * click Select One dropdown
@@ -66,5 +66,22 @@ public class C03_DropdownsWithoutSelectTag {
          *
          * NOT:right click/inspect/eventlisteners/blur  burada bulunan bütün seçenekler silinir.
          */
+
+        driver.get("https://demoqa.com/select-menu");
+
+        //locate the dropdown menu and click on it
+        WebElement dropDownMenu = driver.findElement(By.cssSelector("#selectOne>div"));
+        dropDownMenu.click();
+
+        //locate the 'Mrs.' webElement
+        WebElement optionInDropDown = driver.findElement(By.cssSelector("#react-select-3-option-0-2"));
+        optionInDropDown.click();
+        Thread.sleep(2000);
+
+
+        //verification
+        String actual = dropDownMenu.getText();
+        String expected = "Mrs.";
+        Assert.assertEquals(actual,expected);
     }
 }

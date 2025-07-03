@@ -104,7 +104,7 @@ public class C01_ListOfElements_FindElements {
     }
 
     @Test
-    public void findElements_Task(){
+    public void findElements_Task() throws InterruptedException {
         /**
          * navigate to http://www.eurotech.study/
          * accept cookies
@@ -117,6 +117,54 @@ public class C01_ListOfElements_FindElements {
          * locate Experience Credentials and Education Credentials with findElements()
          * then get both element texts and print them
          */
+        driver.get("http://www.eurotech.study/");
+        //accept cookies
+        driver.findElement(By.id("rcc-confirm-button")).click();
+        Thread.sleep(2000);
+
+        //click login
+        WebElement loginBtn = driver.findElement(By.linkText("Login"));
+        loginBtn.click();
+        Thread.sleep(2000);
+
+        //locate emailBox, passBox and Login Button with one locator and put them in a list which named as inputs
+        //inputs list contains 3 different webElement
+        //we can get any of these webElement by manipulating 'inputs list'
+        List<WebElement> inputs = driver.findElements(By.cssSelector("input"));
+
+        //assert that the size is 3
+        System.out.println(inputs.size());
+        Assert.assertTrue(inputs.size() == 3);
+
+        //verify that the value of 3rd element is Login
+        String actualValue = inputs.get(2).getAttribute("value");
+        String expectedValue = "Login";
+        Assert.assertEquals(actualValue, expectedValue);
+
+        //send your credentials to related boxes and then click login button
+        inputs.get(0).sendKeys("sgezer56@gmail.com");
+        inputs.get(1).sendKeys("Sg12345678");
+        inputs.get(2).click();
+        Thread.sleep(2000);
+
+        //verify success login with "Welcome Salim Gezer" text
+        WebElement personalName = driver.findElement(By.id("dashboard-p1"));
+        String actualNameText = personalName.getText();
+        String expectedNameText = "Welcome Salim Gezer";
+
+        Assert.assertEquals(actualNameText, expectedNameText, "verify that the names are same");
+        Thread.sleep(2000);
+
+        List<WebElement> experienceAndEducations = driver.findElements(By.xpath("//h2"));
+        //ayrı ayrı textleri alıp yazdıralım..
+        System.out.println("experienceAndEducations.get(0).getText() = " + experienceAndEducations.get(0).getText());
+        System.out.println("experienceAndEducations.get(1).getText() = " + experienceAndEducations.get(1).getText());
+        System.out.println("----------------------");
+        //for each loop ile iki texti loop içinde yazdıralım
+        for (WebElement experienceAndEducation : experienceAndEducations) {
+            System.out.println("experienceAndEducation.getText() = " + experienceAndEducation.getText());
+        }
+
     }
 
 }
