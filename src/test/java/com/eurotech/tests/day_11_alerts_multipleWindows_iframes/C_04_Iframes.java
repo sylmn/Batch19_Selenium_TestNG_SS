@@ -78,6 +78,94 @@ public class C_04_Iframes {
         WebElement secondFrame = driver.findElement(By.tagName("h1"));
         System.out.println("secondFrame.getText() = " + secondFrame.getText());
     }
+
+    @Test
+    public void iFrameExample(){
+        /**
+         * navigate to https://testpages.herokuapp.com/styled/frames/frames-test.html
+         * switch to top frame by name attribute
+         * take the "Nested Frames Example" heading and print it
+         * return to main html
+         * switch to left frame by name attribute
+         * take the "Left" heading and print it
+         * return to main html
+         * switch to middle frame by index
+         * take the "Middle" heading and print it
+         * return to main html
+         * switch to right frame by web element
+         * take the "Right" heading and print it
+         * return to main html
+         * switch to footer frame by index
+         * take the "EvilTester.com" link text and print it
+         */
+
+        driver.get("https://testpages.herokuapp.com/styled/frames/frames-test.html");
+        driver.switchTo().frame("top");
+      //  driver.switchTo().frame(0);
+        WebElement topTitle = driver.findElement(By.cssSelector("h1"));
+        System.out.println("topTitle.getText() = " + topTitle.getText());
+        driver.switchTo().parentFrame();
+
+        driver.switchTo().frame("left");
+        WebElement leftTitle = driver.findElement(By.tagName("h1"));
+        System.out.println("leftTitle.getText() = " + leftTitle.getText());
+        driver.switchTo().defaultContent();
+
+        driver.switchTo().frame(2);
+        WebElement middleTitle = driver.findElement(By.tagName("h1"));
+        System.out.println("middleTitle.getText() = " + middleTitle.getText());
+        driver.switchTo().defaultContent();
+
+        WebElement rightFrame = driver.findElement(By.cssSelector("[src='get-list?name=Right&list=50']"));
+        driver.switchTo().frame(rightFrame);
+        WebElement rightTitle = driver.findElement(By.xpath("//h1"));
+        System.out.println("rightTitle.getText() = " + rightTitle.getText());
+        driver.switchTo().parentFrame();
+
+        driver.switchTo().frame(4);
+        WebElement evilLink = driver.findElement(By.linkText("EvilTester.com"));
+        System.out.println("evilLink.getText() = " + evilLink.getText());
+
+    }
+
+    @Test
+    public void nestedFrames() throws InterruptedException {
+        /**
+         * navigate to https://demoqa.com/nestedframes
+         * switch to parent frame by id
+         * take the "Parent frame" heading and print it
+         * switch to child frame by index
+         * take the "Child frame" heading and print it
+         * switch to main frame related method
+         * take the "Nested Frames" heading and print it
+         */
+
+        driver.get("https://demoqa.com/nestedframes");
+        driver.switchTo().frame("frame1");
+        WebElement parentBody = driver.findElement(By.tagName("body"));
+        System.out.println("parentBody.getText() = " + parentBody.getText());
+
+        driver.switchTo().frame(0);
+        WebElement childTitle = driver.findElement(By.tagName("p"));
+        System.out.println("childTitle.getText() = " + childTitle.getText());
+
+        driver.switchTo().parentFrame();
+        driver.switchTo().parentFrame();
+
+        WebElement mainTitle = driver.findElement(By.cssSelector("#framesWrapper>.text-center"));
+        System.out.println("mainTitle.getText() = " + mainTitle.getText());
+    }
+
+    @Test
+    public void iframeTask(){
+        /**
+         * navigate to https://the-internet.herokuapp.com/iframe
+         * get te text of heading "An iFrame containing the TinyMCE WYSIWYG Editor" and print it
+         * "Your content goes here." take this writing and print it
+         * get te text of heading "An iFrame containing the TinyMCE WYSIWYG Editor" and print it again.
+         * NOT : frame geçişlerinde id veya name kullanalım.
+         */
+    }
 }
 
 /**
