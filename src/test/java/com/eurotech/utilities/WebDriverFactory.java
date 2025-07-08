@@ -39,4 +39,5 @@ public class WebDriverFactory {
         driver.manage().window().maximize();
         return driver;
     }
+
 }
