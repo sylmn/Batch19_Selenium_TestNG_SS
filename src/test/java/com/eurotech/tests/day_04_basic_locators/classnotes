@@ -1,0 +1,62 @@
+What is the problem?
+Locate the web elements!
+
+Locators
+we have 8 different locators
+
+Basic Locators (1 -- class)
+1. id (%99 unique, eğer bir webelementin id'si varsa doğrudan onu kullanabiliriz)
+2. name (birden fazla olabilir, dikkat!)
+3. tagName (birden fazla olabilir, dikkat!)
+4. className (birden fazla olabilir, dikkat! / class adı içinde boşluk varsa doğrudan kullanılamaz)
+5. linkText (kullanışlı)
+6. PartialLinkText (kullanışlı)
+
+Advance Locators (Custom Locators)
+7. XPath (Master olunacak -- 1 class)
+8. CSS (Master olunacak -- 1 class)
+
+
+1. Id
+it will be always unique and the first locator we are looking for.
+If there is an id attribute available for the web element we will check if it is dynamic or not.
+If it is NOT changing --static-- we will use it.
+How to understand ID value is changing(dynamic) ?
+while we inspect the element, and refresh the webpage,
+if the id value is changing we CAN NOT use it. refresh a couple of times always to make sure.
+
+2. Name
+if we cannot use id, or it is dynamic we look for the name.
+name can be duplicated so be careful!
+
+3.TagName
+if we cannot find name or id, we look for tagName
+tagname can be duplicated so be careful!
+we find tags with --> //tagName
+
+4. ClassName
+another attribute for locating web elements
+class can be duplicated so be careful!
+when we shouldn't use classname locator ?
+if there is a space in the class attribute value, we CAN NOT USE it.
+
+5. LinkText
+6. PartialLinkText
+linkText --> using full text of link to locate link webelement on the webpage
+partialLinkText--> using part of the linktext to locate link webelement
+
+NOTE: For the name,tagname, class name, linktext and partial link text:
+It should be unique or should be the first one from top to bottom.
+Why? --> Selenium reads the source code from top to bottom.
+if your locators matched with one webelement, selenium stops there.
+
+driver.findElement()-->method used to find weblement on the page
+By is a selenium class for locators.
+
+Note:
+HTML üzerinde elementleri sorgularken --> control + F
+Note: Bir webelementin stringini alacağımız zaman:
+      1. webelement.getText() --> %99 kullanacağız ve neredeyse her zaman işe yarar
+      2. webelement.
+      getAttribute("value") --> işe yarar bir method,
+      özellikle içerisine text/string yazılan input box'ların içindeki stringleri almak için kullanılır
