@@ -18,7 +18,7 @@ public class C01_NavigationDemo {
         // set up a firefox (chrome) driver
         WebDriver driver = new FirefoxDriver();
 
-        driver.manage().window().setPosition(new Point(1000,0));
+        driver.manage().window().setPosition(new Point(1000, 0));
         driver.manage().window().maximize();
 
         //navigate to https://www.facebook.com/

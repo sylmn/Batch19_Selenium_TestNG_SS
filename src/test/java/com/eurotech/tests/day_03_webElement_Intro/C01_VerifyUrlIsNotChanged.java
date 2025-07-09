@@ -24,13 +24,13 @@ public class C01_VerifyUrlIsNotChanged {
         System.out.println("expectedUrl = " + expectedUrl);
 
         //get the login button and put in the webelement bucket
-        WebElement loginBtn= driver.findElement(By.id("login"));
+        WebElement loginBtn = driver.findElement(By.id("login"));
         loginBtn.click();
-        String actuelUrl= driver.getCurrentUrl();
+        String actuelUrl = driver.getCurrentUrl();
 
-        if (actuelUrl.equals(expectedUrl)){
+        if (actuelUrl.equals(expectedUrl)) {
             System.out.println("passed...!");
-        }else{
+        } else {
             System.out.println("failed...!!!");
         }
         driver.quit();

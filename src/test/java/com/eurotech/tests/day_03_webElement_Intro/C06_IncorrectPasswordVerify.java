@@ -38,7 +38,7 @@ public class C06_IncorrectPasswordVerify {
         String message = errorMsg.getText();
         System.out.println("message = " + message);
 
-        String expectedMsg= "Username and password do not match";
+        String expectedMsg = "Username and password do not match";
 
         if (message.contains(expectedMsg))
             System.out.println("passed");

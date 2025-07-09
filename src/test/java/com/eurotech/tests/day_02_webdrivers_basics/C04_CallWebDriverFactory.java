@@ -17,9 +17,9 @@ public class C04_CallWebDriverFactory {
         String expectedUrl = "https://tr-tr.facebook.com/";
 
         //test
-        if (actualUrl.equals(expectedUrl)){
+        if (actualUrl.equals(expectedUrl)) {
             System.out.println("Passed..!");
-        }else {
+        } else {
             System.out.println("failed..!");
         }
         driver.quit();

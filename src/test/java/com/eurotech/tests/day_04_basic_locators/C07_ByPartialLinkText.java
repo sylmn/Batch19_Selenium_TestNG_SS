@@ -1,4 +1,4 @@
-package com.eurotech.tests.day_04basic_locators;
+package com.eurotech.tests.day_04_basic_locators;
 
 import com.eurotech.utilities.WebDriverFactory;
 import org.openqa.selenium.By;

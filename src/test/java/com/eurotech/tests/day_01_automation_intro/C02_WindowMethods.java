@@ -15,18 +15,18 @@ public class C02_WindowMethods {
         System.out.println(title);
 
         //maximize window
-       // driver.manage().window().maximize();
+        // driver.manage().window().maximize();
 
         //fullscreen
         //driver.manage().window().fullscreen();
 
-        //window'un position alma
+        //Window'un position alma
         //27,4px=1cm
         Point position = driver.manage().window().getPosition();
         System.out.println("position = " + position);
 
-        //window un positioni set etme
-        driver.manage().window().setPosition(new Point(-1000,150));
+        //Window'un positioni set etme
+        driver.manage().window().setPosition(new Point(-1000, 150));
         driver.manage().window().maximize();
 
         //windowun ebatlarini alma
@@ -40,8 +40,8 @@ public class C02_WindowMethods {
 
 
         //pencerenin ebatlarini ayarlama
-        driver.manage().window().setSize(new Dimension(520,1000));
-        size=driver.manage().window().getSize();
+        driver.manage().window().setSize(new Dimension(520, 1000));
+        size = driver.manage().window().getSize();
         System.out.println("size = " + size);
     }
 }

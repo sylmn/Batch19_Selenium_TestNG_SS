@@ -7,18 +7,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class C05_Example1 {
     public static void main(String[] args) throws InterruptedException {
         /**
-            * Set up a Chrome (veya Firefox) driver
-            * Go to https://www.google.com
-            * Print the title of the page
-            * Go to https://www.wikipedia.org
-            * Print the current URL
-            * Navigate back to Google
-            * Navigate forward to Wikipedia
-            * Refresh the page
-            * Close the browser
-        */
-        WebDriver driver =new ChromeDriver();
-        driver.manage().window().setPosition(new Point(-1000,0));
+         * Set up a Chrome (veya Firefox) driver
+         * Go to https://www.google.com
+         * Print the title of the page
+         * Go to https://www.wikipedia.org
+         * Print the current URL
+         * Navigate back to Google
+         * Navigate forward to Wikipedia
+         * Refresh the page
+         * Close the browser
+         */
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().setPosition(new Point(-1000, 0));
         driver.manage().window().maximize();
         driver.get("https://www.google.com");
         Thread.sleep(2000);

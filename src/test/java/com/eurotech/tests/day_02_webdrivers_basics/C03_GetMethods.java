@@ -12,8 +12,8 @@ public class C03_GetMethods {
          * get title and get url get page source code
          * verify that title, url and Page source codes  contain "hepsiburada"
          */
-        WebDriver driver =new ChromeDriver();
-        driver.manage().window().setPosition(new Point(-1000,0));
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().setPosition(new Point(-1000, 0));
         driver.manage().window().maximize();
 
         driver.get("https://www.hepsiburada.com/");
@@ -22,7 +22,7 @@ public class C03_GetMethods {
         String actuelTitle = driver.getTitle();
 
         //url alalim
-        String actualUrl =driver.getCurrentUrl();
+        String actualUrl = driver.getCurrentUrl();
 
         //source kodu alalim
         String actualPageSource = driver.getPageSource();
@@ -30,10 +30,10 @@ public class C03_GetMethods {
         //test
         //verify yapalim
 
-        if (actuelTitle.toLowerCase().contains("hepsiburada")&& actualUrl.toLowerCase().contains("hepsiburada")
-            && actualPageSource.toLowerCase().contains("hepsiburada")){
+        if (actuelTitle.toLowerCase().contains("hepsiburada") && actualUrl.toLowerCase().contains("hepsiburada")
+                && actualPageSource.toLowerCase().contains("hepsiburada")) {
             System.out.println("Passed...!");
-        }else{
+        } else {
             System.out.println("Failed...!!!");
         }
 

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 public class C02_VerifyUnitsChanged {
     public static void main(String[] args) throws InterruptedException {
-
         /**
          * Task
          * open chrome browser
@@ -44,7 +43,5 @@ public class C02_VerifyUnitsChanged {
             System.out.println("failed");
 
         driver.quit();
-
-
     }
 }
