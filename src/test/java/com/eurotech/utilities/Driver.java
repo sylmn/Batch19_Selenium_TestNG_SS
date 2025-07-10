@@ -40,8 +40,6 @@ public class Driver {
                     break;
             }
         }
-        driver.manage().window().setPosition(new Point(-1000, 0));
-        driver.manage().window().maximize();
         return driver;
     }
 
