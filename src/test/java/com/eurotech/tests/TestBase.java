@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class TestBase {
 
-   protected WebDriver driver;
+   protected WebDriver driver;  // access modifies Default olduğu için extend edildiğinde diğer class larda görülmez. Ondal dolayı protected olarak değiştirdik
    protected WebDriverWait wait;
 
     @BeforeMethod

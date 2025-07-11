@@ -1,0 +1,14 @@
+
+Driver ı tekil hale getirdik        --> Singleton Design Pattern        --> Bütün projede ortak olarak kullanılan testler için tek bir obje üzerinden testin ilerlemesi için
+TestBase                            --> Before ve After methodlarını topladığımız class, inheritance yoluyla test classlarına extend edilir
+
+POM (.xml)          --> projemizin dependencies lerinin toplandığı yer, maven ın beyni, kalbi   ==> Project Object Model
+
+POM                 --> Design Pattern          ==> Page Object Model
+        ** kod tekrarını önler
+        ** gerekli bömlümlerle ilgili class ların ve packege yapılarının kurulmasını sağlar
+        ** kullanılması zorunlu değil ama işleri kolaylaştıran tecrübe edilmiş bir yapıdır
+
+@FindBy (locator)       --> Locator tanımla hale getirmek için gereken annotation
+@FindsBy (locator, locator)
+@FindByAll (locator, locator)
