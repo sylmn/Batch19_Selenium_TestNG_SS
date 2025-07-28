@@ -109,4 +109,37 @@ public class C_03_MultipleWindows {
 
         Assert.assertFalse(actualURL.equals(expectedURL));
     }
+
+    @Test
+    public void multipleWindow_Task() throws InterruptedException {
+        /**
+         * https://the-internet.herokuapp.com/windows sayfasını açın
+         * "Click Here" linkine tıklayın
+         * yeni açılan pencereye geçin
+         * yeni açılan sayfada "New Window" başlığının olduğunu doğrulayın.
+         * yeni açılan pencerenin title ve url'sini alıp yazdırın. (isterseniz bunları kullanarak verification yapabilirsiniz)
+         */
+        driver.get("https://the-internet.herokuapp.com/windows");
+        WebElement clickHereButton = driver.findElement(By.xpath("//a[text()='Click Here']"));
+        clickHereButton.click();
+
+        Thread.sleep(2000);
+
+        //switched between windows
+        String currentWindow = driver.getWindowHandle();
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        for (String windowHandle : windowHandles) {
+            if(!currentWindow.equals(windowHandle)){
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+
+        //verification
+        WebElement newWindow = driver.findElement(By.xpath("//h3[text()='New Window']"));
+        String actual = newWindow.getText();
+        String expected = "New Window";
+        Assert.assertEquals(actual,expected);
+    }
 }

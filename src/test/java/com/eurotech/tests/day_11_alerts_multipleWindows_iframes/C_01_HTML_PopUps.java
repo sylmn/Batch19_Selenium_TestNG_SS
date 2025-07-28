@@ -54,12 +54,33 @@ public class C_01_HTML_PopUps {
     }
 
     @Test
-    public void html_Popup_task(){
+    public void html_Popup_task() throws InterruptedException {
         /**
          * go to http://primefaces.org/showcase/ui/overlay/confirmDialog.xhtml?jfwid=73437
          * click on confirm button
          * click on yes at the popup window
          * make verification with confirmed popup
          */
+
+        driver.get("http://primefaces.org/showcase/ui/overlay/confirmDialog.xhtml?jfwid=73437");
+        Thread.sleep(2000);
+
+
+        WebElement confirmButton = driver.findElement(By.xpath("(//span[text()='Confirm'])[1]"));
+        confirmButton.click();
+
+        Thread.sleep(2000);
+
+        WebElement yesButton = driver.findElement(By.xpath("//span[.='Yes']"));
+        yesButton.click();
+
+        Thread.sleep(2000);
+
+        WebElement confirmationPopUp = driver.findElement(By.xpath("//p[.='You have accepted']"));
+
+        //make verification
+        String actual = confirmationPopUp.getText();
+        String expected = "You have accepted";
+        Assert.assertEquals(actual,expected);
     }
 }

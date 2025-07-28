@@ -122,7 +122,7 @@ public class C_02_JS_Alerts {
 
     }
     @Test
-    public void jsAlert_Task(){
+    public void jsAlert_Task() throws InterruptedException {
         /**   CLASS TASK
          * navigate to https://testpages.herokuapp.com/styled/alerts/alert-test.html
          * click alert box
@@ -142,5 +142,40 @@ public class C_02_JS_Alerts {
          *
          * NOT: tüm taskı tek test metodunda yapabilirsiniz..
          */
+        driver.get("https://testpages.herokuapp.com/styled/alerts/alert-test.html");
+        Thread.sleep(2000);
+
+        WebElement firstBtn = driver.findElement(By.cssSelector("[value='Show alert box']"));
+        firstBtn.click();
+        Alert alert = driver.switchTo().alert();
+        Thread.sleep(2000);
+
+        System.out.println("alert.getText() = " + alert.getText());
+        alert.accept();
+        Thread.sleep(2000);
+
+        WebElement secondBtn = driver.findElement(By.cssSelector("[value='Show confirm box']"));
+        secondBtn.click();
+        Thread.sleep(2000);
+        System.out.println("alert.getText() = " + alert.getText());
+        alert.dismiss();
+        Thread.sleep(2000);
+        WebElement cancelMessage=driver.findElement(By.id("confirmexplanation"));
+        String actualMessage= cancelMessage.getText();
+        Assert.assertTrue(actualMessage.contains("Cancel"));
+
+
+        WebElement thirdBtn = driver.findElement(By.cssSelector("[value='Show prompt box']"));
+        thirdBtn.click();
+        Thread.sleep(2000);
+        System.out.println("alert.getText() = " + alert.getText());
+        alert.sendKeys("Ahmet");
+        alert.accept();
+        Thread.sleep(2000);
+
+        String actualText = driver.findElement(By.cssSelector("#promptreturn")).getText();
+        String expectedText = "Ahmet";
+
+        Assert.assertEquals(actualText,expectedText);
     }
 }

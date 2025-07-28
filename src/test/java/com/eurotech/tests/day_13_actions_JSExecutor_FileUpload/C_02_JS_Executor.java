@@ -142,7 +142,7 @@ public class C_02_JS_Executor {
     }
 
     @Test
-    public void jsExecutor_Task(){
+    public void jsExecutor_Task() throws InterruptedException {
         /**
          * navigate to https://sdettest.eurotechstudy.eu/forms/elements
          * scroll 1000 px down
@@ -159,5 +159,58 @@ public class C_02_JS_Executor {
          *
          * not: all steps should be done with js executor except step 3 and last one.
          */
+
+        driver.get("https://sdettest.eurotechstudy.eu/forms/elements");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
+
+        //scroll 1000 px down
+        js.executeScript("window.scrollBy(0,1000)");
+        Thread.sleep(3000);
+
+        //change the Range position
+        WebElement customRange = driver.findElement(By.id("customRange1"));
+        actions.dragAndDropBy(customRange, 500, 0).build().perform();
+        Thread.sleep(3000);
+
+        //change the Disabled Range position
+        WebElement disabledRange = driver.findElement(By.id("disabledRange"));
+        js.executeScript("arguments[0].setAttribute('min', '-25')", disabledRange);
+        Thread.sleep(3000);
+
+        //scroll to the Number label
+        WebElement number = driver.findElement(By.xpath("//label[text()='Number']"));
+        js.executeScript("arguments[0].scrollIntoView();", number);
+        Thread.sleep(3000);
+
+        //change the color from blue to red
+        WebElement exampleColorInput = driver.findElement(By.id("exampleColorInput"));
+        js.executeScript("arguments[0].setAttribute('value', '#FF0000')", exampleColorInput);
+        Thread.sleep(3000);
+
+        //select the Disabled Radio 3 button
+        WebElement disableRadioBox = driver.findElement(By.id("gridRadios"));
+        js.executeScript("arguments[0].setAttribute('checked','true')", disableRadioBox);
+        Thread.sleep(3000);
+
+        //scroll to the submit button
+        WebElement submit = driver.findElement(By.xpath("//button[@name='submit']"));
+        Thread.sleep(3000);
+        js.executeScript("arguments[0].scrollIntoView();", submit);
+        Thread.sleep(3000);
+
+        //scroll again to the number label
+        js.executeScript("arguments[0].scrollIntoView();", number);
+        Thread.sleep(3000);
+
+        //scroll to the submit button and click on it
+        js.executeScript("arguments[0].scrollIntoView(true);" + "arguments[0].click()", submit);
+
+        Thread.sleep(3000);
+
+        String actualTitle=js.executeScript("return document.title;").toString();
+        String currentURL=js.executeScript("return document.URL;").toString();
+
+        Assert.assertTrue(actualTitle.contains("EuroTech"));
     }
 }

@@ -139,5 +139,20 @@ public class C_03_FileUpload {
          * Upload butonuna bas
          * çıkan sayfadan yüklenen dosyanın ismini doğrula
          */
+
+        driver.get("https://the-internet.herokuapp.com/upload");
+        WebElement chooseFile= driver.findElement(By.cssSelector("#file-upload"));
+
+        String projectPath=System.getProperty("user.dir");
+        String filePath="src/test/resources/fileUploadDemo.txt";
+        String fullPath=projectPath+"/"+filePath;
+        System.out.println("fullPath = " + fullPath);
+
+        chooseFile.sendKeys(fullPath);
+        driver.findElement(By.id("file-submit")).click();
+
+        String actualText=driver.findElement(By.id("uploaded-files")).getText();
+
+        Assert.assertEquals(actualText, "fileUploadDemo.txt");
     }
 }

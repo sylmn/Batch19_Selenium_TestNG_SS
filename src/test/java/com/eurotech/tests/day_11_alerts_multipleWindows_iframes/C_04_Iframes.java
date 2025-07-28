@@ -157,7 +157,7 @@ public class C_04_Iframes {
     }
 
     @Test
-    public void iframeTask(){
+    public void iframeTask() throws InterruptedException {
         /**
          * navigate to https://the-internet.herokuapp.com/iframe
          * get te text of heading "An iFrame containing the TinyMCE WYSIWYG Editor" and print it
@@ -165,6 +165,33 @@ public class C_04_Iframes {
          * get te text of heading "An iFrame containing the TinyMCE WYSIWYG Editor" and print it again.
          * NOT : frame geçişlerinde id veya name kullanalım.
          */
+
+        // NOT: ******** Taskın olduğu site paralı olmuş, task çalışmıyor şu anda. **********
+
+        driver.get("https://the-internet.herokuapp.com/iframe");
+        Thread.sleep(2000);
+
+        //we will be able to locate this element since it is in the default HTML
+        WebElement upTitle = driver.findElement(By.xpath("//textarea[@id='mce_0']/../h3"));
+        System.out.println("upTitle.getText() = " + upTitle.getText());
+
+        //we will not be able to locate this element since it is in another HTML/frame
+        /*WebElement targetElement = driver.findElement(By.xpath("//p[text()='Your content goes here.']"));
+        System.out.println("targetElement.getText() = " + targetElement.getText());*/
+
+        //switch driver to the target html block by using "id value" or "name value"
+        driver.switchTo().frame("mce_0_ifr");
+
+        WebElement targetElement = driver.findElement(By.xpath("//p[text()='Your content goes here.']"));
+        System.out.println("targetElement.getText() = " + targetElement.getText());
+
+        //switch driver to the parent (default) HMTL
+        //go back to parent frame
+        driver.switchTo().parentFrame();
+
+        //tekrar locate etmek gerekir mi? Hayır gerekmez ama burada tekrar locate edilmiştir.
+        WebElement upTitle1 = driver.findElement(By.xpath("//textarea[@id='mce_0']/../h3"));
+        System.out.println("upTitle1.getText() = " + upTitle1.getText());
     }
 }
 

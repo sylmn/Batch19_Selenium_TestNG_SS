@@ -69,15 +69,38 @@ public class C_01_Actions {
     }
 
     @Test
-    public void hoverOver_Task(){
+    public void hoverOver_Task() {
         /**
          * go to https://the-internet.herokuapp.com/hovers
          * locate all users (image on the page) with findElements()
          * hover over all of them and verify that "name:user1-2-3" is displayed
          * if any time issues solve them with implicitly or explicitly waits
          */
-    }
 
+        driver.get("https://the-internet.herokuapp.com/hovers");
+
+        //(//img)[2]
+        //(//img)[3]
+        //(//img)[4]
+
+        //h5[text()='name: user1']
+        //h5[text()='name: user2']
+        //h5[text()='name: user3']
+
+        driver.get("https://the-internet.herokuapp.com/hovers");
+
+        for (int i = 2; i <= 4; i++) {
+            String imgXPath = "(//img)[" + i + "]";
+            WebElement img = driver.findElement(By.xpath(imgXPath));
+
+            actions.moveToElement(img).perform();
+
+            String userText = "//h5[text()='name: user" + (i - 1) + "']";
+            WebElement user = driver.findElement(By.xpath(userText));
+
+            Assert.assertTrue(new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(user)).isDisplayed());
+        }
+    }
     @Test
     public void dragAndDrop(){
         /**
@@ -112,6 +135,21 @@ public class C_01_Actions {
          * take "Drag me" and drop it "Drop here" section
          * verify that the "Dropped!" message is displayed (make text verification)
          */
+
+        driver.get("https://demoqa.com/droppable");
+
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.xpath("(//div[@id='droppable'])[1]"));
+
+        Actions actions = new Actions(driver);
+
+        actions.dragAndDrop(source, target).perform();
+
+        WebElement verifyMessage = driver.findElement(By.xpath("//p[text()='Dropped!']"));
+        System.out.println("verifyMessage.getText() = " + verifyMessage.getText());
+
+        Assert.assertTrue(verifyMessage.isDisplayed());
+        Assert.assertEquals(verifyMessage.getText(), "Dropped!", "Verify that element has dropped");
     }
 
     @Test
