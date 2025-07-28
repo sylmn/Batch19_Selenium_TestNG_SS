@@ -22,4 +22,17 @@ public abstract class BasePage {
     @FindBy(css = ".nav-item")
     public List<WebElement> tabMenu;
 
+    public void navigateToTabs(String tabName){
+        WebElement tab = Driver.get().findElement(By.xpath("//span[text()='"+tabName+"']"));
+        tab.click();
+    }
+
+    public void navigateToTabs(String tabName, String moduleName){
+        WebElement tab = Driver.get().findElement(By.xpath("//span[text()='"+tabName+"']"));
+        tab.click();
+        WebElement module = Driver.get().findElement(By.xpath("//span[text()='"+moduleName+"']"));
+        module.click();
+    }
+
+
 }
