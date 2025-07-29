@@ -22,6 +22,9 @@ public abstract class BasePage {
     @FindBy(css = ".nav-item")
     public List<WebElement> tabMenu;
 
+    @FindBy(css = "span.d-none.d-md-block.dropdown-toggle.ps-2")
+    public WebElement usernameAtRightTop;
+
     public void navigateToTabs(String tabName){
         WebElement tab = Driver.get().findElement(By.xpath("//span[text()='"+tabName+"']"));
         tab.click();

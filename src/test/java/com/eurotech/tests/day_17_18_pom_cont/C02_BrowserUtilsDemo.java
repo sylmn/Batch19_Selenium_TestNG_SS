@@ -1,8 +1,7 @@
-package com.eurotech.tests.day_17_pom_cont;
+package com.eurotech.tests.day_17_18_pom_cont;
 
 import com.eurotech.utilities.BrowserUtils;
 import com.eurotech.utilities.Driver;
-import com.eurotech.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;

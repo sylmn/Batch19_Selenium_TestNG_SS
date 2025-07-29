@@ -1,4 +1,4 @@
-package com.eurotech.tests.day_17_pom_cont;
+package com.eurotech.tests.day_17_18_pom_cont;
 
 import com.eurotech.pages.DashboardPage;
 import com.eurotech.pages.LoginPage;
