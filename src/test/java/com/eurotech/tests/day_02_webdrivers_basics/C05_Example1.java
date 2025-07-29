@@ -1,5 +1,6 @@
 package com.eurotech.tests.day_02_webdrivers_basics;
 
+import com.eurotech.utilities.WebDriverFactory;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,9 +18,7 @@ public class C05_Example1 {
          * Refresh the page
          * Close the browser
          */
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().setPosition(new Point(-1000, 0));
-        driver.manage().window().maximize();
+        WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("https://www.google.com");
         Thread.sleep(2000);
 
