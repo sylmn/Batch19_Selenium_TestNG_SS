@@ -11,5 +11,8 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//h2")
     public WebElement userName;
 
+    @FindBy(css = ".breadcrumb>li:nth-of-type(2)")
+    public WebElement pageTitleLeftTop;
+
 
 }
