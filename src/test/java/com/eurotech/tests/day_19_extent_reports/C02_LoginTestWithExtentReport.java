@@ -60,7 +60,7 @@ public class C02_LoginTestWithExtentReport extends TestBase {
 
         extentLogger.info("and takes the warning message: Password is incorrect. Please check");
         String actualMessage=loginPage.wrongCrendtialMessage.getText();
-        String expectedMessage="Password is incorrect. Please check61";
+        String expectedMessage="Password is incorrect. Please check";
         Assert.assertEquals(actualMessage,expectedMessage,"the message should be same.");
 
         extentLogger.pass("Passed.");
