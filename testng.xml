@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/ihsan/IdeaProjects/ET_Batch19_Selenium_TestNG">
+        <classes>
+            <class name="com.eurotech.tests.day_08_testNG_Intro.C01_FirstTestNG_Test">
+                <methods>
+                    <include name="test1"/>
+                    <include name="test2"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_08_testNG_Intro.C02_BeforeAfterMethod">
+                <methods>
+                    <include name="atest3"/>
+                    <include name="test1"/>
+                    <include name="test2"/>
+                    <include name="test4"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_08_testNG_Intro.C03_TestNGAssertionsDemo">
+                <methods>
+                    <include name="test1"/>
+                    <include name="test2"/>
+                    <include name="test3"/>
+                    <include name="test4"/>
+                    <include name="test5"/>
+                    <include name="test6"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_09_typeOfWebElements.C01_CheckBoxes">
+                <methods>
+                    <include name="checkboxTest"/>
+                    <include name="checkboxTest02"/>
+                    <include name="checkboxTest_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_09_typeOfWebElements.C02_RadioButtons">
+                <methods>
+                    <include name="radioButtonTest"/>
+                    <include name="radioButtonTask"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_09_typeOfWebElements.C03_DisabledElements">
+                <methods>
+                    <include name="disableElements"/>
+                    <include name="disableElements_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_09_typeOfWebElements.C04_isDisplayedDemo">
+                <methods>
+                    <include name="displayed_Test"/>
+                    <include name="displayedTest_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_09_typeOfWebElements.C05_GetAttributeDemo">
+                <methods>
+                    <include name="getAttributeTest"/>
+                    <include name="getAttribute_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_10_listOfElements_dropdowns.C01_ListOfElements_FindElements">
+                <methods>
+                    <include name="findElementsWithCorrectLocator"/>
+                    <include name="findElementsWithIncorrectLocator"/>
+                    <include name="findElements"/>
+                    <include name="findElements_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_10_listOfElements_dropdowns.C02_DropdownsWithSelectTag">
+                <methods>
+                    <include name="dropDownWithSelectTag"/>
+                    <include name="dropDownWithSelectTag_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_10_listOfElements_dropdowns.C03_DropdownsWithoutSelectTag">
+                <methods>
+                    <include name="dropdownWithoutSelectTag"/>
+                    <include name="dropdownWithoutSelectTag_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_11_alerts_multipleWindows_iframes.C_01_HTML_PopUps">
+                <methods>
+                    <include name="htmlPopups"/>
+                    <include name="html_Popup_task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_11_alerts_multipleWindows_iframes.C_02_JS_Alerts">
+                <methods>
+                    <include name="jsAlert_Accept"/>
+                    <include name="jsAlert_Dismiss"/>
+                    <include name="jsAlert_sendKeys"/>
+                    <include name="jsAlert_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_11_alerts_multipleWindows_iframes.C_03_MultipleWindows">
+                <methods>
+                    <include name="singleWindow"/>
+                    <include name="multipleWindow"/>
+                    <include name="multipleWindow_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_11_alerts_multipleWindows_iframes.C_04_Iframes">
+                <methods>
+                    <include name="iframeWithIdAndWebElement"/>
+                    <include name="iframeWithIndex"/>
+                    <include name="iFrameExample"/>
+                    <include name="nestedFrames"/>
+                    <include name="iframeTask"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_12_waits.C_01_Waits">
+                <methods>
+                    <include name="threadSleep"/>
+                    <include name="implicitlyWait"/>
+                    <include name="explicitlyWait"/>
+<!--                    <include name="explicitlyWait_2"/>-->
+                    <include name="waitClassTask"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_12_waits.C_02_StaleElement">
+                <methods>
+                    <include name="staleElement"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_13_actions_JSExecutor_FileUpload.C_01_Actions">
+                <methods>
+                    <include name="hoverOver"/>
+                    <include name="hoverOver_Task"/>
+<!--                    <include name="dragAndDrop"/>-->
+<!--                    <include name="dragAndDrop_Task"/>-->
+<!--                    <include name="clickWithAction"/>-->
+<!--                    <include name="rightClick"/>-->
+                    <include name="rightClickOpenNewWindow"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_13_actions_JSExecutor_FileUpload.C_02_JS_Executor">
+                <methods>
+                    <include name="clickWithJSE"/>
+                    <include name="typeWithJSE"/>
+                    <include name="scrollDownAndUp"/>
+                    <include name="scrollToElement"/>
+                    <include name="jsExecutor_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_13_actions_JSExecutor_FileUpload.C_03_FileUpload">
+                <methods>
+                    <include name="fileUpload"/>
+                    <include name="systemPropertiesTest"/>
+                    <include name="fileUpload2"/>
+                    <include name="fileDownload"/>
+                    <include name="fileUpload_Task"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_14_webTables.C_01_WebTables">
+                <methods>
+                    <include name="printWholeTable"/>
+                    <include name="getAllColumnHeaders"/>
+                    <include name="getColumnHeadersOneByOne"/>
+                    <include name="getSingleRow"/>
+                    <include name="getAllCellsInOneRow"/>
+                    <include name="getSingleCellDataWithRowAndColumn"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_14_webTables.C_02_WebTables_Task">
+                <methods>
+                    <include name="getSingleCellInOneRow"/>
+                    <include name="printAllCellsByIndex"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_15_properties_singleton.C_01_PropertiesTest">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_15_properties_singleton.C_03_SingletonDemoTest">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_15_properties_singleton.C_04_SingletonDriverTest">
+                <methods>
+                    <include name="test1"/>
+                    <include name="test2"/>
+                    <include name="test3"/>
+                    <include name="test4"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_15_properties_singleton.C_05_LoginTest">
+                <methods>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_15_properties_singleton.C_06_LoginTest_2">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="loginTest_2"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest">
+                <methods>
+                    <include name="positiveLoginTest_OldVersion"/>
+                    <include name="positiveLoginTest_oldVerison2"/>
+                    <include name="positiveLoginTest_POM"/>
+                    <include name="positiveLoginTest_2"/>
+                    <include name="positiveLoginTest_3"/>
+                    <include name="positiveLoginTest_4"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_16_pom_1.C02_NegativeLoginTest">
+                <methods>
+                    <include name="wrongPasswordTest"/>
+                    <include name="wrongEmailTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_16_pom_1.C03_TestWithListOfWebElement">
+                <methods>
+                    <include name="positiveLoginTestWithListOfWebElement"/>
+                    <include name="loginWithKeys"/>
+                    <include name="dashboardTabMenu"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_17_18_pom_cont.C01_DashboardTest">
+                <methods>
+                    <include name="tabMenuTest"/>
+                    <include name="tabMenuTest_1"/>
+                    <include name="navigateTabMenu"/>
+                    <include name="navigateTabMenu_1"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_17_18_pom_cont.C02_BrowserUtilsDemo">
+                <methods>
+                    <include name="test1"/>
+                    <include name="test2"/>
+                    <include name="highlight"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_17_18_pom_cont.C03_EditProfileTest">
+                <methods>
+                    <include name="editProfile"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_17_18_pom_cont.C04_AddEducationTest">
+                <methods>
+                    <include name="addEducationTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_17_18_pom_cont.C05_AddExperienceTask">
+                <methods>
+                    <include name="addExperienceTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_19_extent_reports.C01_ExtentReportsDemo">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_19_extent_reports.C02_LoginTestWithExtentReport">
+                <methods>
+                    <include name="positiveLoginTest_4"/>
+                    <include name="wrongPasswordTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_19_extent_reports.C03_AddEducationWithExtentReport">
+                <methods>
+                    <include name="addEducationTest"/>
+                </methods>
+            </class>
+            <class name="com.eurotech.tests.day_19_extent_reports.C04_AddExperienceWithExtentLogger_Task">
+                <methods>
+                    <include name="addExperienceTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

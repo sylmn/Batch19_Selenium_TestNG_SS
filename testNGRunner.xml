@@ -72,7 +72,7 @@
     </classes>
 </test>
 </suite>-->
-<!--çalışacak testler farklı kombinasyonlarda hazırlanabilir-->
+<!--çalışacak testler farklı kombinasyonlarda hazırlanabilir
 <suite name="EuroTech Automation Suite" verbose="1">
 <test name="Smoke Test">
     <packages>
@@ -92,4 +92,13 @@
         </class>
     </classes>
 </test>
+</suite>-->
+
+<suite name="EuroTech Automation Suite" verbose="1">
+    <test name="Smoke Test">
+        <classes>
+            <class name="com.eurotech.tests.day_19_extent_reports.C02_LoginTestWithExtentReport"></class>
+            <class name="com.eurotech.tests.day_19_extent_reports.C03_AddEducationWithExtentReport"></class>
+        </classes>
+    </test>
 </suite>

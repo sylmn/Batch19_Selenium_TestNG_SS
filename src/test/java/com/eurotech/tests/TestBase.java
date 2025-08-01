@@ -27,7 +27,7 @@ public class TestBase {
     // . Ondal dolayı protected olarak değiştirdik
     protected WebDriverWait wait;
     protected Actions actions;
-    protected ExtentReports report;
+    protected static ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest extentLogger;
 
