@@ -16,6 +16,15 @@ public class UserProfilePage extends BasePage {
     @FindBy(css = "#profile-overview>div:nth-of-type(1)")
     public WebElement profileUpdateMesg;
 
+    @FindBy(xpath = "(//h5[@class='card-title'])[2]")
+    public WebElement profileDetailsHeader;
+
+    @FindBy(xpath = "(//span[text()='SDET'])[last()]")
+    public WebElement jobTitleInProfilePage;
+
+    @FindBy(xpath = "(//span[text()='Yildirim'])[last()]/ancestor::tr//a")
+    public WebElement deleteBtn;
+
     public void navigateUserProfileTabs(String tabName) {
         WebElement tab = Driver.get().findElement(By.xpath("//li//button[text()='" + tabName + "']"));
         tab.click();
@@ -26,8 +35,9 @@ public class UserProfilePage extends BasePage {
 
     }
 
-    public void deleteLastAddedEducationRecord(String schoolName) {
-        WebElement deleteBtn = Driver.get().findElement(By.xpath("(//span[text()='Yildirim'])[last()]/ancestor::tr//a"));
+    public void deleteLastAddedRecord(String relatedName) {
+        WebElement deleteBtn = Driver.get().findElement(By
+                .xpath("(//span[text()='" + relatedName + "'])[last()]/ancestor::tr//a"));
         BrowserUtils.scrollToElement(deleteBtn);
         BrowserUtils.clickWithJS(deleteBtn);
         Alert alert = Driver.get().switchTo().alert();

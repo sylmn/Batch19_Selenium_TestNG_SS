@@ -51,7 +51,7 @@ public class C04_AddEducationTest extends TestBase {
         String expected = "Yildirim";
         Assert.assertEquals(lastAddedSchoolName,expected);
 
-        userProfilePage.deleteLastAddedEducationRecord("Yildirim");
+        userProfilePage.deleteLastAddedRecord("Yildirim");
 
 
     }
