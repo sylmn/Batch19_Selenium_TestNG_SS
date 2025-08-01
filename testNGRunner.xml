@@ -1,0 +1,95 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--Tek bir package nasıl çalıştırılır.
+<suite name="EuroTech Automation Suite" verbose="1">
+    <test name="Smoke Test">
+        <packages>
+            <package name="com.eurotech.tests.day_09_typeOfWebElements"></package>
+        </packages>
+    </test>
+</suite>-->
+
+<!--Birden fazla package nasıl çalıştırılır.
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <packages>
+        <package name="com.eurotech.tests.day_15_properties_singleton"></package>
+        <package name="com.eurotech.tests.day_19_extent_reports"></package>
+    </packages>
+</test>
+</suite>-->
+<!-- sadece tek bir class
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest"></class>
+    </classes>
+</test>
+</suite>-->
+
+<!-- birden fazla class
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest"></class>
+        <class name="com.eurotech.tests.day_15_properties_singleton.C_03_SingletonDemoTest"></class>
+    </classes>
+</test>
+</suite>-->
+
+<!--classs ve package beraber
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <packages>
+        <package name="com.eurotech.tests.day_14_webTables"></package>
+    </packages>
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest"></class>
+        <class name="com.eurotech.tests.day_15_properties_singleton.C_03_SingletonDemoTest"></class>
+    </classes>
+</test>
+</suite>-->
+<!--sadece bir metod çalıştırmak için
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest">
+            <methods>
+                <include name="positiveLoginTest_3"></include>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>-->
+<!--spesifik bir metodu hariç tutmak için
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest">
+            <methods>
+                <exclude name="positiveLoginTest_3"></exclude>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>-->
+<!--çalışacak testler farklı kombinasyonlarda hazırlanabilir-->
+<suite name="EuroTech Automation Suite" verbose="1">
+<test name="Smoke Test">
+    <packages>
+        <package name="com.eurotech.tests.day_12_waits"></package>
+    </packages>
+    <classes>
+        <class name="com.eurotech.tests.day_16_pom_1.C01_PositiveLoginTest">
+            <methods>
+                <exclude name="positiveLoginTest_3"></exclude>
+                <exclude name="positiveLoginTest_2"></exclude>
+            </methods>
+        </class>
+        <class name="com.eurotech.tests.day_16_pom_1.C02_NegativeLoginTest">
+            <methods>
+                <include name="wrongEmailTest"></include>
+            </methods>
+        </class>
+    </classes>
+</test>
+</suite>
