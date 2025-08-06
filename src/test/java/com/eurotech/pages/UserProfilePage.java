@@ -31,6 +31,9 @@ public class UserProfilePage extends BasePage {
     }
 
     public String lastAddedSchoolName(String schoolName) {
+        WebElement schoolText = Driver.get().findElement(By
+                .xpath("(//span[text()='" + schoolName + "'])[last()]/ancestor::tr//a"));
+        BrowserUtils.scrollToElement(schoolText);
         return Driver.get().findElement(By.xpath("(//span[text()='" + schoolName + "'])")).getText();
 
     }

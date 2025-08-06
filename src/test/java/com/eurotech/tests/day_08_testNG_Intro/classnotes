@@ -1,0 +1,17 @@
+Test Levels
+    -Component Testing (Unit) - developer
+    -Integration Testing      - developer
+    -System Testing           - Tester
+    -User acseptance Testing  - Tester, client, PO, BA
+
+TestNG - (Next Generation Testing) - Unit Testing Tool
+    -Testleri düzenlemek, secmek, kosturmak (calistirmak)    ---> ('@' - Annotation)
+    -Verification - dogrulama - actual ve expected karsilastirmasi yapar  ---> (Assert Class i altindaki metodlar üzerinden yapar)
+    -Rapor olusturma islemlerini düzenler   -----> (ExtentReport)
+
+    Java - TestNG - Junit
+    Python - Pytest
+    C# - Nunit
+    JS - cypress
+
+    

@@ -25,7 +25,7 @@ public class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
-    protected ExtentReports report;
+    protected static ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest extentLogger;
 
@@ -54,7 +54,7 @@ public class TestBase {
     @BeforeMethod
     public void setup (){
         driver= Driver.get();
-        driver.manage().window().setPosition(new Point(-1000, 0));
+        driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().maximize();
         driver.get(ConfigurationReader.get("url"));
 
