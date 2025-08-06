@@ -1,9 +1,20 @@
 package com.eurotech.tests.day_17_18_pom_cont;
 
+import com.eurotech.pages.AddExperiencePage;
+import com.eurotech.pages.DashboardPage;
+import com.eurotech.pages.LoginPage;
+import com.eurotech.pages.UserProfilePage;
 import com.eurotech.tests.TestBase;
+import com.eurotech.utilities.BrowserUtils;
+import com.eurotech.utilities.ConfigurationReader;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C05_AddExperienceTask extends TestBase {
+    LoginPage loginPage;
+    DashboardPage dashboardPage;
+    UserProfilePage userProfilePage;
+    AddExperiencePage addExperiencePage;
 
     @Test
     public void addExperienceTest(){
@@ -21,5 +32,38 @@ public class C05_AddExperienceTask extends TestBase {
 
          important note: every student should use own credentials, otherwise the test case will fail....
          */
+
+        loginPage = new LoginPage();
+        dashboardPage = new DashboardPage();
+        userProfilePage = new UserProfilePage();
+        addExperiencePage = new AddExperiencePage();
+
+        loginPage.login();
+
+        BrowserUtils.waitForVisibility(dashboardPage.userName, 5);
+
+        String actualUserName = dashboardPage.userName.getText();
+        String expectedUserName = ConfigurationReader.get("userName");
+        Assert.assertEquals(actualUserName, expectedUserName, "usernames should be same");
+
+        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"), "My Profile");
+
+        BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle, 5);
+        Assert.assertTrue(userProfilePage.userProfilePageTitle.isDisplayed());
+
+        userProfilePage.navigateUserProfileTabs("Add Experience");
+
+        Assert.assertTrue(BrowserUtils.waitForVisibility(addExperiencePage.addExperienceBtn, 5).isDisplayed());
+
+        addExperiencePage.addExperienceMtd();
+
+       // BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle2, 2); bazen stale element hatası veriyor.
+
+        String actualExperienceRecord = userProfilePage.addedExperienceName(addExperiencePage.jobTitleName);
+        String expectedExperienceRecord = addExperiencePage.jobTitleName;
+
+        Assert.assertEquals(actualExperienceRecord, expectedExperienceRecord);
+
+        userProfilePage.deleteExperience(addExperiencePage.jobTitleName);
     }
 }

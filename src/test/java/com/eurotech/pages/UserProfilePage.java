@@ -12,6 +12,9 @@ public class UserProfilePage extends BasePage{
     @FindBy(css = "ol.breadcrumb>li:nth-of-type(2)")
     public WebElement userProfilePageTitle;
 
+    @FindBy(xpath = "//li[@class='breadcrumb-item'][2]")
+    public WebElement userProfilePageTitle2;
+
     @FindBy(css = "#profile-overview>div:nth-of-type(1)")
     public WebElement profileUpdateMessage;
 
@@ -31,7 +34,23 @@ public class UserProfilePage extends BasePage{
         BrowserUtils.scrollToElement(deleteBtn);
         BrowserUtils.clickWithJS(deleteBtn);
 
+        BrowserUtils.waitFor(2);
         Alert alert = Driver.get().switchTo().alert();
+        alert.accept();
+    }
+
+    public String addedExperienceName(String jobTitleName) {
+        return Driver.get().findElement(By.xpath("//span[text()='" + jobTitleName + "']")).getText();
+    }
+
+    public void deleteExperience(String jobTitleName) {
+        WebElement deleteEducationBtn = Driver.get()
+                .findElement(By.xpath("//span[text()='"+jobTitleName+"']/ancestor::tr//a"));
+
+        BrowserUtils.waitForClickablility(deleteEducationBtn, 7);
+        BrowserUtils.clickWithJS(deleteEducationBtn);
+        Alert alert = Driver.get().switchTo().alert();
+        BrowserUtils.waitFor(2);
         alert.accept();
     }
 
