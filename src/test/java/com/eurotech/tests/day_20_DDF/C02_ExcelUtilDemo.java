@@ -69,5 +69,9 @@ public class C02_ExcelUtilDemo {
         System.out.println("dataList.get(5).get(\"Last Name\") = " + dataList.get(5).get("Last Name"));
         System.out.println("dataList.get(9).get(\"City\") = " + dataList.get(9).get("City"));
         System.out.println("dataList.get(4).get(\"Company\") = " + dataList.get(4).get("Company"));
+
+        System.out.println("----------------------------------");
+
+        System.out.println("excelData.getLastRowData() = " + excelData.getLastRowData());
     }
 }

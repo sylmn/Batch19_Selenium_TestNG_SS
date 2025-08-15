@@ -111,6 +111,15 @@ public class ExcelUtil {
         return columns;
     }
 
+    public List<String> getLastRowData() {
+        List<String> lastRow = new ArrayList<>();
+
+        for (Cell cell : workSheet.getRow(rowCount() - 1)) {
+            lastRow.add(cell.toString());
+        }
+        return lastRow;
+    }
+
     public void setCellData(String value, int rowNum, int colNum) {
         Cell cell;
         Row row;
