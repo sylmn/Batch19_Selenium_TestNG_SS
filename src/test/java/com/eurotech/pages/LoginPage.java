@@ -1,38 +1,38 @@
 package com.eurotech.pages;
 
 import com.eurotech.utilities.ConfigurationReader;
+import com.eurotech.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage{
     /**
      * PageFactory.initElements()   webElement leri locate etmek çin gerekli olan   By class ının tanımla hale getirir
-     * <p>
-     * aksi halde
      *
+     * aksi halde
      * @FindBy ile tanımlanan elementler null olarak kalır
      * NullPointerException alınır
      */
+//    public LoginPage(){
+//        PageFactory.initElements(Driver.get(),this);
+//    }
 
-    //    public LoginPage(){
-    //        PageFactory.initElements(Driver.get(),this);
-    //    }
+   // WebElement emailBox = driver.findElement(By.id("email"));
 
-    // WebElement emailBox = driver.findElement(By.id("email"));
-
-    @FindBy(id = "email")
+    @FindBy(id="email")
     public WebElement emailBox;
 
-    @FindBy(id = "yourPassword")
+    @FindBy (id = "yourPassword")
     public WebElement passwordBox;
 
-    @FindBy(xpath = "//button")
+    @FindBy (xpath = "//button")
     public WebElement loginBtn;
-
 
     // AND logic ile çalışır... Yani verilen tüm locator lara sahip olan webElement i bulur
     @FindBys({
@@ -56,7 +56,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Email address is incorrect. Please check')]")
     public WebElement wrongUserEmailMessage;
 
-    @FindBy(css = "[role=\"alert\"]")
+    @FindBy (css = "[role=\"alert\"]")
     public WebElement wrongCrendtialMessage;
 
     @FindBy(css = ".form-control,button")
@@ -75,6 +75,4 @@ public class LoginPage extends BasePage {
         passwordBox.sendKeys(password);
         loginBtn.click();
     }
-
-
 }

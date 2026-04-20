@@ -10,79 +10,75 @@ import org.testng.annotations.Test;
 
 public class C01_ExtentReportsDemo {
 
-    /**
-     * SOLID --> Info
-     * S - Single Responsibility Principle (SRP)
-     * O – Open/Closed Principle (OCP)
-     * L – Liskov Substitution Principle (LSP)
-     * I – Interface Segregation Principle (ISP)
-     * D – Dependency Inversion Principle (DIP)
-     */
-
-    //Bu class rapor olusturmak ve rapor ile ilgili metadata'yi tanimlamak icin kullanilir.
+    //Bu class rapor oluşturmak ve rapor ile ilgili metadata'yı tanımlamak içimn kullanılır.
     ExtentReports report;
 
-    //Bu class raporumuzun HTML formatinda olmasini saglar.
+    //Bu class raporumuzun html formatında olmasını sağlar.
     ExtentHtmlReporter htmlReporter;
 
-    //Her test ile ilgili log kayitlari almamizi ve test adimlarini tanimlamamizi saglar
+    //Her test ile ilgili log kayıtları almamızı ve test adımlarını tanımlamamızı sağlar.
     ExtentTest extentLogger;
 
     @BeforeMethod
-    public void before() {
-        //rapor objemizi initialize edelim
+    public void before(){
+        //rapor objemizi initialize edelim.
         report = new ExtentReports();
 
-        //raporun kayit edilecegi yeri belirleyelim
+        //raporun kayıt edileceği yeri belirleyelim (path)
         String projectPath = System.getProperty("user.dir");
-        String reportPath = projectPath + "/test-output/report.html"; //burada sadece yolunu olusturduk
+        String reportPath = projectPath + "/test-output/report.html";
 
-        //html raporumuzu path ile olusturalim
-        htmlReporter = new ExtentHtmlReporter(reportPath); //burada dosya olusturuluyor
+        //html raporumuzu path ile oluşturalım
+        htmlReporter = new ExtentHtmlReporter(reportPath);
 
-        //html raporumuzu, rapor objesi ile iliskilendirelim (attach)
+        //html raporumuzu, report objesi ile ilişkilendirelim (attach)
         report.attachReporter(htmlReporter);
 
-        //raporumuza baslik verelim
+        //raporumuza başlık verelim
         htmlReporter.config().setReportName("Smoke Test");
 
-        //Raporumuzun environment (metadata) bilgilerini düzenleyelim
-        report.setSystemInfo("Environment", "QA");
+        //raporumuzun environment (metadata) bilgilerini düzenleyelim.
+
+        report.setSystemInfo("Environment","QA");
         report.setSystemInfo("Browser", ConfigurationReader.get("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));
         report.setSystemInfo("Test Engineer", ConfigurationReader.get("userName"));
-        report.setSystemInfo("PO", "Süleyman Süleyman");
+        report.setSystemInfo("PO","Süleyman Süleyman");
+
     }
 
     @Test
-    public void test1() {
-        //mevcut bu testimizin adini girelim
+    public void test1(){
+        //mevcut bu testimizin adını girelim
         extentLogger = report.createTest("TC001 Demo Test");
 
-        //test adimlarini tekrar tekrar girelim
-        extentLogger.info("chrome browseri ac");
+        //test adımlarını teker teker girelim
+        extentLogger.info("chrome browserı aç");
+        // kod buraya yazılacak - code here
 
-        extentLogger.info("web sayfasina git");
-        //kod buraya yazilacak - code here
+        extentLogger.info("Web sayfasına git");
+        // kod buraya yazılacak - code here
 
         extentLogger.info("email gir");
-        //kod buraya yazilacak - code here
+        // kod buraya yazılacak - code here
 
         extentLogger.info("password gir");
-        //kod buraya yazilacak - code here
+        // kod buraya yazılacak - code here
 
-        extentLogger.info("login butonuna click yap");
-        //kod buraya yazilacak - code here
+        extentLogger.info("login buttona click yap");
+        // kod buraya yazılacak - code here
 
-        extentLogger.info("Login oldugunuzu kullanici adi ile dogrula " + ConfigurationReader.get("userName"));
-        //kod buraya yazilacak - code here
+        extentLogger.info("Login olduğunuzu kullanıcı adi ile doğrula : "+ ConfigurationReader.get("userName"));
+        // kod buraya yazılacak - code here
 
         extentLogger.pass("Passed...!");
+
     }
 
+
     @AfterMethod
-    public void after() {
-        //raporun gercek anlamda olusturuldugu yer
+    public void after(){
+        //raporun gerçek anlamda oluşturulduğu yer
         report.flush();
     }
 }

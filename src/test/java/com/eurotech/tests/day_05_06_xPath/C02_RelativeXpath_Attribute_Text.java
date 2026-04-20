@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class C02_RelativeXpath_Attribute_Text {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         /**
          * open chrome
          * navigate to https://www.amazon.com.tr/
@@ -20,22 +20,36 @@ public class C02_RelativeXpath_Attribute_Text {
          * close driver.
          */
 
+        //open chrome
+        //navigate to https://www.amazon.com.tr/
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("https://www.amazon.com.tr/");
-        Thread.sleep(2000);
-        WebElement kabulEtButton = driver.findElement(By.xpath("//input[@id='sp-cc-accept']"));
-        kabulEtButton.click();
-        WebElement searchBox = driver.findElement(By.xpath("//input[@role='searchbox']"));
 
-        searchBox.sendKeys("Selenium");
-        Thread.sleep(2000);
-        WebElement searchclick = driver.findElement(By.xpath("//input[@value='Git']"));
-        searchclick.click();
-        WebElement resultText = driver.findElement(By.xpath("//span[text()='\"Selenium\"']"));
-        //WebElement resultText = driver.findElement(By.xpath("//span[.='\"Selenium\"']"));
-        System.out.println("resultText.getText() = " + resultText.getText());
-        Thread.sleep(2000);
+        //accept cookies if any (use xPath formula with known attribute value)
+        //lazy way
+        driver.findElement(By.xpath("//input[@id='sp-cc-accept']")).click();
+
+        //* locate search bar with xPath formula with known attribute value
+        //* send "Selenium" word to the search bar
+        WebElement searchBar = driver.findElement(By.xpath("//input[@role='searchbox']"));
+        searchBar.sendKeys("Selenium");
+
+        // locate search button with xPath formula with known attribute value
+        // click search button
+        WebElement searchBtn = driver.findElement(By.xpath("//input[@value='Git']"));
+        searchBtn.click();
+
+        //* Get the search result by the formula of the text feature of Xpath (two ways)
+        //* get the text of web element and print it.
+        WebElement searchResult1 = driver.findElement(By.xpath("//span[.='\"Selenium\"']"));
+        WebElement searchResult2 = driver.findElement(By.xpath("//span[text()='\"Selenium\"']"));
+
+        System.out.println("searchResult1.getText() = " + searchResult1.getText());
+        System.out.println("searchResult2.getText() = " + searchResult2.getText());
 
         driver.close();
+
+
     }
 }

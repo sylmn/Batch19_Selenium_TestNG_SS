@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class C08_RelativeXpath_withMethod {
-
-    static WebDriver driver;
+   static WebDriver driver;
 
     public static void main(String[] args) throws InterruptedException {
         /**
@@ -21,20 +20,24 @@ public class C08_RelativeXpath_withMethod {
          * add to cart buttonuna sırasıyla click yapan bir test yazın. yukarıdaki metodu kullanarak click
          * işlemini yapalım. ürünlerin isimlerini uygun java yapılarından çağırabiliriz..
          */
-        driver = WebDriverFactory.getDriver("chrome");
+
+        driver= WebDriverFactory.getDriver("chrome");
+
         driver.get("https://demowebshop.tricentis.com/");
 
-        //locate "Simple Computer Add to Cart Button" with the name of product
+       // WebElement simpleComputerAddToCartButton= driver.findElement(By.xpath("//a[text()='Simple Computer']/ancestor::div[@class='details']//input"));
 
-        //WebElement simpleComAddTochartBtn = driver.findElement(By.xpath("//a[text()='Simple Computer']/ancestor::div[@class='details']//input"));
-        //simpleComAddTochartBtn.click();
-        addToChart("Simple Computer");
-        Thread.sleep(2000);
+       // simpleComputerAddToCartButton.click();
+
+        addToCart("Build your own computer");
+
+        Thread.sleep(5000);
+
         driver.close();
     }
 
-    private static void addToChart(String productName) {
-        WebElement productAddToCart = driver.findElement(By.xpath("//a[text()='" + productName + "']/ancestor::div[@class='details']//input"));
+    private static void addToCart(String productName){
+        WebElement productAddToCart=driver.findElement(By.xpath("//a[text()='"+productName+"']/ancestor::div[@class='details']//input"));
         productAddToCart.click();
     }
 

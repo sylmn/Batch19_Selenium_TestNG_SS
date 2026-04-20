@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C02_LoginTestWithExtentReport extends TestBase {
+
     @Test
     public void positiveLoginTest_4() {
         /**
@@ -15,37 +16,38 @@ public class C02_LoginTestWithExtentReport extends TestBase {
          * login with valid credentials
          * verify that the user's name is seen on dashboard page
          */
-        extentLogger = report.createTest("TC002 Positive Login Test");
 
-        extentLogger.info("navigate to https://sdettest.eurotechstudy.eu/login");
+        extentLogger = report.createTest("TC004 Positive Login Test");
+
+        extentLogger.info("navigate to "+ConfigurationReader.get("url"));
         extentLogger.info("login with valid credentials");
-        LoginPage loginPage = new LoginPage();
-        loginPage.login();
+        LoginPage loginPage=new LoginPage();
+        loginPage.login("leeroyjenkins@email.com","1234.Asdf");
 
         extentLogger.info("verify that the user's name is seen on dashboard page");
-        DashboardPage dashboardPage = new DashboardPage();
-        String actualUserName = dashboardPage.userName.getText();
-        String expectedUserName = ConfigurationReader.get("userName");
-        Assert.assertEquals(actualUserName, expectedUserName, "solo");
+        DashboardPage dashboardPage=new DashboardPage();
+        String actualUserName=dashboardPage.userName.getText();
+        String expectedUserName= ConfigurationReader.get("userName");
+        Assert.assertEquals(actualUserName,expectedUserName, "should be same");
 
-        extentLogger.pass("Passed...!");
+        extentLogger.pass("Passed..!");
 
     }
 
     @Test
     public void wrongPasswordTest() {
         /**
-         * Navigate to https://sdettest.eurotechstudy.eu/login
-         * Type in correct username
-         * Type in wrong password
-         * Verify that user cannot log in
-         * Takes the warning message: "Password is incorrect. Please check"
+         * navigate to https://sdettest.eurotechstudy.eu/login
+         * type in correct username
+         * type in wrong password
+         * verify that user cannot login
+         * and takes the warning message: "Password is incorrect. Please check"
          */
 
-        extentLogger = report.createTest("TC003 Negative Login Test (Wrong Password)");
+        extentLogger = report.createTest("TC008 Negative Login Test (Wrong Password)");
 
         extentLogger.info("navigate to " + ConfigurationReader.get("url"));
-        LoginPage loginPage = new LoginPage();
+        LoginPage loginPage=new LoginPage();
 
         extentLogger.info("type in correct username");
         loginPage.emailBox.sendKeys(ConfigurationReader.get("userEmail"));
@@ -56,14 +58,12 @@ public class C02_LoginTestWithExtentReport extends TestBase {
         extentLogger.info("click on login button");
         loginPage.loginBtn.click();
 
-        extentLogger.info("passwort is incorrect");
-        //  loginPage.login(ConfigurationReader.get("userEmail"),"wrongPassword");
+        extentLogger.info("and takes the warning message: Password is incorrect. Please check");
+        String actualMessage=loginPage.wrongCrendtialMessage.getText();
+        String expectedMessage="Password is incorrect. Please check";
+        Assert.assertEquals(actualMessage,expectedMessage,"the message should be same.");
 
-        //  String actualMessage=loginPage.wrongPasswordMessage.getText();
-        String actualMessage = loginPage.wrongCrendtialMessage.getText();
-        String expectedMessage = "Password is incorrect. Please check";
+        extentLogger.pass("Passed.");
 
-        Assert.assertEquals(actualMessage, expectedMessage, "the message should be same.");
-        extentLogger.pass("passed");
     }
 }

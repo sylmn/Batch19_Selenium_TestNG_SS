@@ -7,43 +7,48 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
-public class UserProfilePage extends BasePage {
+public class UserProfilePage extends BasePage{
 
     @FindBy(css = "ol.breadcrumb>li:nth-of-type(2)")
     public WebElement userProfilePageTitle;
 
     @FindBy(css = "#profile-overview>div:nth-of-type(1)")
+    public WebElement profileUpdateMessage;
     public WebElement profileUpdateMesg;
 
-    @FindBy(xpath = "(//h5[@class='card-title'])[2]")
-    public WebElement profileDetailsHeader;
-
-    @FindBy(xpath = "(//span[text()='SDET'])[last()]")
-    public WebElement jobTitleInProfilePage;
-
-    @FindBy(xpath = "(//span[text()='Yildirim'])[last()]/ancestor::tr//a")
-    public WebElement deleteBtn;
-
-    public void navigateUserProfileTabs(String tabName) {
-        WebElement tab = Driver.get().findElement(By.xpath("//li//button[text()='" + tabName + "']"));
+    public void navigateUserProfileTabs(String tabName){
+        WebElement tab = Driver.get().findElement(By.xpath("//li//button[text()='"+tabName+"']"));
         tab.click();
     }
 
-    public String lastAddedSchoolName(String schoolName) {
-        WebElement schoolText = Driver.get().findElement(By
-                .xpath("(//span[text()='" + schoolName + "'])[last()]/ancestor::tr//a"));
-        BrowserUtils.scrollToElement(schoolText);
-        return Driver.get().findElement(By.xpath("(//span[text()='" + schoolName + "'])")).getText();
-
+    public String lastAddedSchoolName(String schoolName){
+        return Driver.get().findElement(By.xpath("(//span[text()='"+schoolName+"'])[last()]")).getText();
     }
 
-    public void deleteLastAddedRecord(String relatedName) {
+    public void deleteLastAddedEducationRecord(String schoolName){
         WebElement deleteBtn = Driver.get().findElement(By
-                .xpath("(//span[text()='" + relatedName + "'])[last()]/ancestor::tr//a"));
+                .xpath("(//span[text()='" + schoolName + "'])[last()]/ancestor::tr//a"));
+
         BrowserUtils.scrollToElement(deleteBtn);
         BrowserUtils.clickWithJS(deleteBtn);
+
+        BrowserUtils.waitFor(2);
         Alert alert = Driver.get().switchTo().alert();
+        alert.accept();
+    }
+
+    public String addedExperienceName(String jobTitleName) {
+        return Driver.get().findElement(By.xpath("//span[text()='" + jobTitleName + "']")).getText();
+    }
+
+    public void deleteExperience(String jobTitleName) {
+        WebElement deleteEducationBtn = Driver.get()
+                .findElement(By.xpath("//span[text()='"+jobTitleName+"']/ancestor::tr//a"));
+
+        BrowserUtils.waitForClickablility(deleteEducationBtn, 7);
+        BrowserUtils.clickWithJS(deleteEducationBtn);
+        Alert alert = Driver.get().switchTo().alert();
+        BrowserUtils.waitFor(2);
         alert.accept();
     }
 }

@@ -16,21 +16,28 @@ public class C01_AbsoluteXpath {
          * close driver
          */
 
+        //open a chrome browser and navigate to "https://demoqa.com/automation-practice-form"
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.get("https://demoqa.com/automation-practice-form");
 
-        WebElement adressBox = driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/form/div[9]/div[2]/textarea"));
-        adressBox.sendKeys("Manheim/Kolonya");
+        //locate current address input area with absolute xPath
+        WebElement addressBox = driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/form/div[9]/div[2]/textarea"));
 
-        String actualAdress = adressBox.getAttribute("value");
-        String expectedAdress = "Manheim/Kolonya";
+       //send "Manheim/Kolonya" to the address box area
+        addressBox.sendKeys("Manheim/Kolonya");
 
-        if (actualAdress.equals(expectedAdress))
-            System.out.println("passed");
+        //then take the value of address box area
+        String actualAddress = addressBox.getAttribute("class");
+        System.out.println("actualAddress = " + actualAddress);
+        String expectedAddress = "Manheim/Kolonya";
+
+        if (actualAddress.equals(expectedAddress))
+            System.out.println("Pass..");
         else
-            System.out.println("failed");
+            System.out.println("Fail..!!");
 
         Thread.sleep(2000);
         driver.close();
+
     }
 }

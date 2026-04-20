@@ -1,5 +1,6 @@
 package com.eurotech.tests.day_17_18_pom_cont;
 
+import com.beust.ah.A;
 import com.eurotech.pages.AddEducationPage;
 import com.eurotech.pages.DashboardPage;
 import com.eurotech.pages.LoginPage;
@@ -11,6 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C04_AddEducationTest extends TestBase {
+
     @Test
     public void addEducationTest(){
         /**
@@ -28,31 +30,32 @@ public class C04_AddEducationTest extends TestBase {
 
          important note: every student should use own credentials, otherwise the test case will fail....
          */
-        LoginPage loginPage=new LoginPage();
-        DashboardPage dashboardPage=new DashboardPage();
-        UserProfilePage userProfilePage=new UserProfilePage();
-        AddEducationPage addEducationPage=new AddEducationPage();
 
+        LoginPage loginPage = new LoginPage();
+        DashboardPage dashboardPage = new DashboardPage();
+        UserProfilePage userProfilePage = new UserProfilePage();
+        AddEducationPage addEducationPage = new AddEducationPage();
 
         loginPage.login();
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(dashboardPage.userName)).isDisplayed());
-        String actualUserName=dashboardPage.userName.getText();
-        String expectedUserName=ConfigurationReader.get("userName");
-        Assert.assertEquals(actualUserName,expectedUserName);
+        String actualUserName = dashboardPage.userName.getText();
+        String expectedUserName = ConfigurationReader.get("userName");
+        Assert.assertEquals(actualUserName, expectedUserName);
 
-        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"),"My Profile");
+        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"), "My Profile");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.userProfilePageTitle)).isDisplayed());
 
         userProfilePage.navigateUserProfileTabs("Add Education");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(addEducationPage.addEducationBtn)).isDisplayed());
 
-        addEducationPage.fillEducationForm("Yildirim","Good","Karisik","10102017","10102022","Easy");
-        String lastAddedSchoolName=userProfilePage.lastAddedSchoolName("Yildirim");
-        String expected = "Yildirim";
-        Assert.assertEquals(lastAddedSchoolName,expected);
+        addEducationPage.fillingAddEducationForm("Uçanevler","Ortaokul","Sözel","10102017",
+                "10102022","Hard program");
 
-        userProfilePage.deleteLastAddedRecord("Yildirim");
+        String lastAddedSchoolName = userProfilePage.lastAddedSchoolName("Uçanevler");
+        String expectedSchoolName = "Uçanevler";
+        Assert.assertEquals(lastAddedSchoolName, expectedSchoolName);
 
+        userProfilePage.deleteLastAddedEducationRecord("Uçanevler");
 
     }
 }

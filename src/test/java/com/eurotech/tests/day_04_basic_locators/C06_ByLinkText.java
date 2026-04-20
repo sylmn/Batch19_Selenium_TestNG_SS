@@ -15,19 +15,29 @@ public class C06_ByLinkText {
          * click to the web element
          * close driver.
          */
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         driver.get("http://www.eurotech.study/");
+
         Thread.sleep(2000);
 
-        WebElement buttonUnderstant = driver.findElement(By.id("rcc-confirm-button"));
-        buttonUnderstant.click();
+        //accept cookies if any  lazy way
+        driver.findElement(By.id("rcc-confirm-button")).click();
 
-        WebElement loginButton = driver.findElement(By.linkText("Login"));
-        String text = loginButton.getText();
-        System.out.println("text = " + text);
+
+        WebElement loginBtn = driver.findElement(By.linkText("Login"));
+
+        String loginBtnText = loginBtn.getText();
+
+        System.out.println("loginBtnText = " + loginBtnText);
+
+        Thread.sleep(2000);
+
+        loginBtn.click();
+        Thread.sleep(2000);
 
         driver.close();
-
 
     }
 }

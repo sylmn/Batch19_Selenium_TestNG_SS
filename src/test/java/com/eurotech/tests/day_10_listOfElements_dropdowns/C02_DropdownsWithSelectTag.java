@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.TreeMap;
 
 public class C02_DropdownsWithSelectTag {
     WebDriver driver;

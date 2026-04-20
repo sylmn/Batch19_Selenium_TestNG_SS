@@ -12,27 +12,31 @@ import java.util.List;
 public abstract class BasePage {
 
     /**
-     * header ve footer gibi her sayfada karşımıza çıkacak webElement leri bu sayfada toplayabilriz
-     * inheritance yoluyla diğer page ler altında onlara da ulaşabiliriz
+     * header ve footer gibi her sayfada karşımıza çıkacak webElementleri bu sayfada toplayabilriz
+     * inheritance yoluyla diğer page'ler altında onlara da ulaşabiliriz
      */
+
     public BasePage(){
         PageFactory.initElements(Driver.get(),this);
     }
 
     @FindBy(css = ".nav-item")
     public List<WebElement> tabMenu;
+
     @FindBy(css = "span.d-none.d-md-block.dropdown-toggle.ps-2")
     public WebElement usernameAtRightTop;
 
     public void navigateToTabs(String tabName){
-        WebElement tab = Driver.get().findElement(By.xpath("//span[text()='" + tabName + "']"));
+        WebElement tab = Driver.get().findElement(By.xpath("//span[text()='"+tabName+"']"));
         tab.click();
     }
+
     public void navigateToTabs(String tabName, String moduleName){
         WebElement tab = Driver.get().findElement(By.xpath("//span[text()='"+tabName+"']"));
         tab.click();
         WebElement module = Driver.get().findElement(By.xpath("//span[text()='"+moduleName+"']"));
         module.click();
     }
+
 
 }

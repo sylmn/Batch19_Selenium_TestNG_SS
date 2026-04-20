@@ -9,40 +9,53 @@ import org.openqa.selenium.WebElement;
 public class C02_ByName {
     public static void main(String[] args) throws InterruptedException {
         /**
-        * [x] open chrome browser and navigate to https://testpages.herokuapp.com/styled/basic-html-form-test.html
-        * [x] locate username input box by using name locator
-        * [x] end a random name to the box
-        * [x] clear the box
-        * [x] send another name to the box
-        * [x] get the second name which sent to the box and assign it to a string variable
-        * [x] print the second name
-        * [x] make verification
-        * [x] close driver.
-        */
+         * open chrome browser and navigate to https://testpages.herokuapp.com/styled/basic-html-form-test.html
+         * locate username input box by using name locator
+         * send a random name to the box
+         * clear the box
+         * send another name to the box
+         * get the second name which sent to the box and assign it to a string variable
+         * print the second name
+         * make verification
+         * close driver.
+         */
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         driver.get("https://testpages.herokuapp.com/styled/basic-html-form-test.html");
-        Thread.sleep(2000);
 
-        WebElement usernameTxtBox = driver.findElement(By.name("username"));
+        Thread.sleep(3000);
+
+        //locate username input box by using name locator
+        WebElement usernameBox = driver.findElement(By.name("username"));
+
         Faker faker = new Faker();
-        String name1 = faker.name().fullName();
-        usernameTxtBox.sendKeys(name1);
+        String name1= faker.name().fullName();
+
+        usernameBox.sendKeys(name1);
 
         Thread.sleep(2000);
-        usernameTxtBox.clear();
-        String name2 = faker.name().fullName();
-        System.out.println("name2 = " + name2);
-        usernameTxtBox.sendKeys(name2);
+
+        usernameBox.clear();
+
+        String name2= faker.name().fullName();
+        usernameBox.sendKeys(name2);
+
         Thread.sleep(2000);
 
-        String actual = usernameTxtBox.getAttribute("value");
-        if (actual.equals(name2))
-            System.out.println("passed");
-        else
-            System.out.println("failed");
+        String actual = usernameBox.getAttribute("name");
+
+        if (actual.equals(name2)){
+            System.out.println("pass");
+        }else {
+            System.out.println("fail");
+        }
         driver.close();
-
-
-
     }
 }
+
+/**
+ * 1. name ler id ler gibi dinamik olmaz
+ * 2. ancak birden fazla web elementin name attribute değeri aynı olabilir. Bu durumda
+ * name ile locate ederisek selenium her zaman ilk web elemente gide ve işlem yapar
+ */

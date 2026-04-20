@@ -39,6 +39,4 @@ public class C02_AttributeValue_MultipleAttributeValue {
 
         driver.close();
     }
-
-
 }

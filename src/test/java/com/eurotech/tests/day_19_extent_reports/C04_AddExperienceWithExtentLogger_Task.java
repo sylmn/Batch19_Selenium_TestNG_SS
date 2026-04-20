@@ -5,73 +5,70 @@ import com.eurotech.pages.DashboardPage;
 import com.eurotech.pages.LoginPage;
 import com.eurotech.pages.UserProfilePage;
 import com.eurotech.tests.TestBase;
+import com.eurotech.utilities.BrowserUtils;
 import com.eurotech.utilities.ConfigurationReader;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C04_AddExperienceWithExtentLogger_Task extends TestBase {
+
+    LoginPage loginPage;
+    DashboardPage dashboardPage;
+    UserProfilePage userProfilePage;
+    AddExperiencePage addExperiencePage;
     @Test
-    public void addExperienceTest() {
+    public void addExperienceTest(){
         /**
          1-navigate to https://sdettest.eurotechstudy.eu/login
-         2-Make login
-         3-Assert successful login with username
+         2-make login
+         3-Assert successful login with user name
          4-Navigate to My Profile with related method
          5-Verify that User Profile page is displayed
          6-Navigate to Add Experience tab with related method
-         7-Verify that add experience page is displayed
+         7-Verify that add experince page is displayed
          8-Fill the form with non-parameterized method (using actions class is optional)
-         9-Verify that added experience record can be seen at user profile page...
-         (assert with job title)
+         9-Verify that added experience record can be seen at user profile page... (assert with job title)
          10-Delete last added experience record
+
+         important note: every student should use own credentials, otherwise the test case will fail....
          */
 
-        extentLogger = report.createTest("TC005 Add Experience Part Information Test");
-        LoginPage loginPage = new LoginPage();
-        DashboardPage dashboardPage = new DashboardPage();
-        UserProfilePage userProfilePage = new UserProfilePage();
-        AddExperiencePage addExperiencePage = new AddExperiencePage();
+        extentLogger = report.createTest("TC007 Adding New Experience");
 
-        extentLogger.info("Open " + ConfigurationReader.get("browser") + " browser");
+        loginPage = new LoginPage();
+        dashboardPage = new DashboardPage();
+        userProfilePage = new UserProfilePage();
+        addExperiencePage = new AddExperiencePage();
+
         extentLogger.info("Navigate to " + ConfigurationReader.get("url"));
-        extentLogger.info("Make login");
+        extentLogger.info("Enter site with correct userEmail and password");
         loginPage.login();
 
-        extentLogger.info("Assert successful login with username");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(dashboardPage.userName)).isDisplayed());
-        String actualName = dashboardPage.userName.getText();
-        String expectedName = ConfigurationReader.get("userName");
-        Assert.assertEquals(actualName, expectedName);
+        extentLogger.info("Verify that login is successful with account name= " + ConfigurationReader.get("userName"));
+        BrowserUtils.waitForVisibility(dashboardPage.userName, 5);
+        String expectedUserName = ConfigurationReader.get("userName");
+        String actualUserName = dashboardPage.userName.getText();
+        Assert.assertEquals(actualUserName, expectedUserName);
 
-        extentLogger.info("Navigate to My Profile with related method");
+        extentLogger.info("Navigate to My Profile");
         dashboardPage.navigateToTabs(ConfigurationReader.get("userName"), "My Profile");
+        BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle,5);
 
-        extentLogger.info("Verify that User Profile page is displayed");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.userProfilePageTitle)).isDisplayed());
-        String actualHeader = userProfilePage.profileDetailsHeader.getText();
-        String expectedHeader = "Profile Details";
-        Assert.assertEquals(actualHeader, expectedHeader);
-
-        extentLogger.info("Navigate to Add Experience tab with related method");
+        extentLogger.info("Navigate to Add Experience tab");
         userProfilePage.navigateUserProfileTabs("Add Experience");
 
-        extentLogger.info("Verify that add experience page is displayed");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(addExperiencePage.jobTitleHdr)).isDisplayed());
-        String actualTextInAddExp = addExperiencePage.jobTitleHdr.getText();
-        String expectedTextInAddExp = "Job Title *";
-        Assert.assertEquals(actualTextInAddExp, expectedTextInAddExp);
-
-        extentLogger.info("Fill the form with non-parameterized method");
-        addExperiencePage.fillExperienceForm();
+        extentLogger.info("Adding new experience");
+        addExperiencePage.addExperienceMtd();
 
         extentLogger.info("Verify that added experience record can be seen at user profile page");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.profileDetailsHeader)).isDisplayed());
-        String actualJobTitleTextInProfAdd = userProfilePage.jobTitleInProfilePage.getText();
-        String expectedJobTitleTextInProfAdd = "SDET";
-        Assert.assertEquals(actualJobTitleTextInProfAdd, expectedJobTitleTextInProfAdd);
+      //  BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle, 5);
+        String actualExperienceRecord = userProfilePage.addedExperienceName(addExperiencePage.jobTitleName);
+        String expectedExperienceRecord = addExperiencePage.jobTitleName;
+        Assert.assertEquals(actualExperienceRecord, expectedExperienceRecord);
 
         extentLogger.info("Delete last added experience record");
-        userProfilePage.deleteLastAddedRecord("SDET");
+        userProfilePage.deleteExperience(addExperiencePage.jobTitleName);
+
+        extentLogger.pass("PASSED");
     }
 }

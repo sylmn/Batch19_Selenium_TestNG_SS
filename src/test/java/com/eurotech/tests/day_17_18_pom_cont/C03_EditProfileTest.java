@@ -7,14 +7,20 @@ import com.eurotech.pages.UserProfilePage;
 import com.eurotech.tests.TestBase;
 import com.eurotech.utilities.BrowserUtils;
 import com.eurotech.utilities.ConfigurationReader;
+import com.eurotech.utilities.Driver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class C03_EditProfileTest extends TestBase {
+
     @Test
     public void editProfile(){
-        /** -+-+-+-+-Ise basladiginda verilebilecek bir task-+-+-+-+-+-+-
+        /**
          * Class Task
          * THIS TASK WILL BE IMPLEMENTED USING POM
          * which means we will have one test class for the test
@@ -37,41 +43,49 @@ public class C03_EditProfileTest extends TestBase {
          * click save changes button
          * verify that "Profile Updated" message is appeared
          */
+
         LoginPage loginPage = new LoginPage();
         DashboardPage dashboardPage = new DashboardPage();
-        UserProfilePage userProfilePage=new UserProfilePage();
-        EditProfilePage editProfilePage=new EditProfilePage();
+        UserProfilePage userProfilePage = new UserProfilePage();
+        EditProfilePage editProfilePage = new EditProfilePage();
 
         loginPage.login();
 
-        BrowserUtils.waitForVisibility(dashboardPage.userName,15);
+        BrowserUtils.waitForVisibility(dashboardPage.userName, 15);
         wait.until(ExpectedConditions.visibilityOf(dashboardPage.usernameAtRightTop));
-        //new WebDriverWait(Driver.get(), Duration.ofSeconds(12)).until(ExpectedConditions.visibilityOf(dashboardPage.usernameAtRightTop));
-        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"),"My Profile");
+      //  new WebDriverWait(Driver.get(), Duration.ofSeconds(12)).until(ExpectedConditions.visibilityOf(dashboardPage.usernameAtRightTop));
 
+        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"), "My Profile");
+
+        //burada page title gözükene kadar bekleme yapıyoruz
         BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle,15);
+        //burada ise page title gözükene kadar bekleme yaptıktan sonra, gözüktüğünü doğruluyoruz.
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.userProfilePageTitle)).isDisplayed());
 
-        //create a method that navigate you to specific module based on the given parameter
         userProfilePage.navigateUserProfileTabs("Edit Profile");
 
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(editProfilePage.saveChangeBtn)).isDisplayed());
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(editProfilePage.saveChangesBtn)).isDisplayed());
+
         editProfilePage.aboutBox.clear();
         editProfilePage.aboutBox.sendKeys("SDET programme , graduated from EuroTech");
-        BrowserUtils.clearAndSendKeys(editProfilePage.companyBox,"Google");
-        editProfilePage.jobSelected("QA Automation Engineer");
 
-        BrowserUtils.clearAndSendKeys(editProfilePage.websiteBox,"www.google.com");
-        BrowserUtils.clearAndSendKeys(editProfilePage.locationBox,"Istanbul");
-        BrowserUtils.clearAndSendKeys(editProfilePage.skillsBox,"Java,Selenium, TestNG");
-        editProfilePage.saveChangeBtn.click();
-        Assert.assertTrue(userProfilePage.profileUpdateMesg.isDisplayed());
+        BrowserUtils.clearAndSendKeys(editProfilePage.companyBox, "Google");
 
-        String actualMessage=userProfilePage.profileUpdateMesg.getText();
-        String expectedMessage="Profile Updated";
+        editProfilePage.jobSelect("QA Automation Engineer");
 
-        Assert.assertEquals(actualMessage,expectedMessage);
+        BrowserUtils.clearAndSendKeys(editProfilePage.websiteBox, "www.google.com");
+        BrowserUtils.clearAndSendKeys(editProfilePage.locationBox, "Istanbul");
+        BrowserUtils.clearAndSendKeys(editProfilePage.skillsBox, "Java, Selenium, TestNG");
+
+        editProfilePage.saveChangesBtn.click();
+
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.profileUpdateMessage)).isDisplayed());
+
+        String actualMessage = userProfilePage.profileUpdateMessage.getText();
+        String expectedMessage = "Profile Updated";
+
+        Assert.assertEquals(actualMessage, expectedMessage);
+
     }
-
 
 }

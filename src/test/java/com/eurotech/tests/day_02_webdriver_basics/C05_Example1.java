@@ -1,0 +1,38 @@
+package com.eurotech.tests.day_02_webdriver_basics;
+
+import com.eurotech.utilities.WebDriverFactory;
+import org.openqa.selenium.WebDriver;
+
+public class C05_Example1 {
+    public static void main(String[] args) throws InterruptedException {
+        /**
+         * Set up a Chrome (veya Firefox) driver
+         * Go to https://www.google.com
+         * Print the title of the page
+         * Go to https://www.wikipedia.org
+         * Print the current URL
+         * Navigate back to Google
+         * Navigate forward to Wikipedia
+         * Refresh the page
+         * Close the browser
+         */
+        WebDriver driver = WebDriverFactory.getDriver("chrome");
+        driver.get("https://www.google.com");
+        Thread.sleep(2000);
+
+        System.out.println("driver.getTitle() = " + driver.getTitle());
+        driver.get("https://www.wikipedia.org");
+        Thread.sleep(2000);
+        System.out.println("driver.getCurrentUrl() = " + driver.getCurrentUrl());
+
+        driver.navigate().back();
+        Thread.sleep(2000);
+
+        driver.navigate().forward();
+        Thread.sleep(2000);
+
+        driver.navigate().refresh();
+        Thread.sleep(2000);
+        driver.quit();
+    }
+}

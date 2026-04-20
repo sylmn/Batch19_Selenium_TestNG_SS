@@ -8,23 +8,32 @@ import org.openqa.selenium.WebElement;
 public class C05_ByTagName {
     public static void main(String[] args) throws InterruptedException {
 
-/**
- * open chrome browser and navigate to http://www.eurotech.study/
- * accept cookies if any
- * locate Copyright web element at the footer of the web page by using tag name locator
- * get the text of web element and print it
- * close driver.
- */
+        /**
+         * open chrome browser and navigate to http://www.eurotech.study/
+         * accept cookies if any
+         * locate Copyright web element at the footer of the web page by using tag name locator
+         * get the text of web element and print it
+         * close driver.
+         */
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         driver.get("http://www.eurotech.study/");
+
         Thread.sleep(2000);
 
-        WebElement buttonUnderstant = driver.findElement(By.id("rcc-confirm-button"));
-        buttonUnderstant.click();
+        //accept cookies if any  lazy way
+        driver.findElement(By.id("rcc-confirm-button")).click();
 
-        WebElement copyrightText = driver.findElement(By.tagName("small"));
-        String textCopy = copyrightText.getText();
-        System.out.println("textCopy = " + textCopy);
+
+        //locate Copyright web element at the footer of the web page by using tag name locator
+        WebElement copyRightWebElement = driver.findElement(By.tagName("small"));
+
+        //get the text of web element and print it
+        String text = copyRightWebElement.getText();
+        System.out.println("text = " + text);
+
         driver.close();
+
     }
 }

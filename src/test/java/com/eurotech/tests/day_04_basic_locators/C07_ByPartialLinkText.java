@@ -15,15 +15,29 @@ public class C07_ByPartialLinkText {
          * click to the web element
          * close driver.
          */
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         driver.get("http://www.eurotech.study/");
+
         Thread.sleep(2000);
 
-        WebElement buttonUnderstant = driver.findElement(By.id("rcc-confirm-button"));
-        buttonUnderstant.click();
-        WebElement signUpButton = driver.findElement(By.partialLinkText(" Up"));
-        String text = signUpButton.getText();
-        System.out.println("text = " + text);
+        //accept cookies if any  lazy way
+        driver.findElement(By.id("rcc-confirm-button")).click();
+
+        //locate Sign Up button web element by using partial link text locator
+        WebElement signUpBtn = driver.findElement(By.partialLinkText(" Up"));
+
+        String signUpBtnText = signUpBtn.getText();
+
+        System.out.println("signUpBtnText = " + signUpBtnText);
+
+        Thread.sleep(2000);
+
+        signUpBtn.click();
+
+        Thread.sleep(2000);
+
         driver.close();
 
     }

@@ -5,12 +5,16 @@ import com.eurotech.pages.DashboardPage;
 import com.eurotech.pages.LoginPage;
 import com.eurotech.pages.UserProfilePage;
 import com.eurotech.tests.TestBase;
+import com.eurotech.utilities.BrowserUtils;
 import com.eurotech.utilities.ConfigurationReader;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class C05_AddExperienceTask extends TestBase {
+    LoginPage loginPage;
+    DashboardPage dashboardPage;
+    UserProfilePage userProfilePage;
+    AddExperiencePage addExperiencePage;
 
     @Test
     public void addExperienceTest(){
@@ -29,37 +33,37 @@ public class C05_AddExperienceTask extends TestBase {
          important note: every student should use own credentials, otherwise the test case will fail....
          */
 
-        LoginPage loginPage=new LoginPage();
-        DashboardPage dashboardPage = new DashboardPage();
-        UserProfilePage userProfilePage = new UserProfilePage();
-        AddExperiencePage addExperiencePage=new AddExperiencePage();
+        loginPage = new LoginPage();
+        dashboardPage = new DashboardPage();
+        userProfilePage = new UserProfilePage();
+        addExperiencePage = new AddExperiencePage();
+
         loginPage.login();
 
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(dashboardPage.userName)).isDisplayed());
-        String actualName = dashboardPage.userName.getText();
-        String expectedName = ConfigurationReader.get("userName");
-        Assert.assertEquals(actualName,expectedName);
+        BrowserUtils.waitForVisibility(dashboardPage.userName, 5);
 
-        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"),"My Profile");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.userProfilePageTitle)).isDisplayed());
-        String actualHeader = userProfilePage.profileDetailsHeader.getText();
-        String expectedHeader= "Profile Details";
-        Assert.assertEquals(actualHeader,expectedHeader);
+        String actualUserName = dashboardPage.userName.getText();
+        String expectedUserName = ConfigurationReader.get("userName");
+        Assert.assertEquals(actualUserName, expectedUserName, "usernames should be same");
+
+        dashboardPage.navigateToTabs(ConfigurationReader.get("userName"), "My Profile");
+
+        BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle, 5);
+        Assert.assertTrue(userProfilePage.userProfilePageTitle.isDisplayed());
 
         userProfilePage.navigateUserProfileTabs("Add Experience");
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(addExperiencePage.jobTitleHdr)).isDisplayed());
-        String actualTextInAddExp=addExperiencePage.jobTitleHdr.getText();
-        String expectedTextInAddExp = "Job Title *";
-        Assert.assertEquals(actualTextInAddExp,expectedTextInAddExp);
-        addExperiencePage.fillExperienceForm();
 
-        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(userProfilePage.profileDetailsHeader)).isDisplayed());
+        Assert.assertTrue(BrowserUtils.waitForVisibility(addExperiencePage.addExperienceBtn, 5).isDisplayed());
 
-        String actualJobTitleTextInProfAdd=userProfilePage.jobTitleInProfilePage.getText();
-        String expectedJobTitleTextInProfAdd = "SDET";
-        Assert.assertEquals(actualJobTitleTextInProfAdd,expectedJobTitleTextInProfAdd);
+        addExperiencePage.addExperienceMtd();
 
-        userProfilePage.deleteLastAddedRecord("SDET");
+       // BrowserUtils.waitForVisibility(userProfilePage.userProfilePageTitle2, 2); bazen stale element hatası veriyor.
 
+        String actualExperienceRecord = userProfilePage.addedExperienceName(addExperiencePage.jobTitleName);
+        String expectedExperienceRecord = addExperiencePage.jobTitleName;
+
+        Assert.assertEquals(actualExperienceRecord, expectedExperienceRecord);
+
+        userProfilePage.deleteExperience(addExperiencePage.jobTitleName);
     }
 }

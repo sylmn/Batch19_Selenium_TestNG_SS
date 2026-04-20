@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 public class C04_SameClassName {
     public static void main(String[] args) throws InterruptedException {
-
 /**
  * open chrome browser and navigate to https://demoqa.com/text-box
  * locate Full Name label web element by using class name locator
@@ -16,12 +15,17 @@ public class C04_SameClassName {
  */
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
+
         driver.get("https://demoqa.com/text-box");
+
         Thread.sleep(2000);
 
-        WebElement fullName = driver.findElement(By.className("form-label"));
-        String text = fullName.getText();
+        WebElement fullname = driver.findElement(By.className("form-label"));
+
+        String text = fullname.getText();
+
         System.out.println("text = " + text);
-driver.close();
+
+        driver.close();
     }
 }

@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
     private Driver() {
@@ -34,19 +33,18 @@ public class Driver {
                     driver = new FirefoxDriver(new FirefoxOptions().addArguments("--headless"));
                     break;
                 case "edge":
-                    if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+                    if (!System.getProperty("os.name").toLowerCase().contains("windows")) {
                         throw new WebDriverException("Your OS does not support Edge");
                     }
                     driver = new EdgeDriver();
                     break;
-
             }
         }
         return driver;
     }
 
-    public static void closeDriver() {
-        if (driver != null) {
+    public static void closeDriver(){
+        if (driver != null){
             driver.quit();
             driver = null;
         }

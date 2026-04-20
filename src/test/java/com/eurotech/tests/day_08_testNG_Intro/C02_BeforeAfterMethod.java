@@ -4,63 +4,64 @@ import org.testng.annotations.*;
 
 public class C02_BeforeAfterMethod {
 
-    @Test(priority = 3)
-    public void test1() {
-        System.out.println("Test1");
+    @Test (priority = 1)
+    public void atest3(){                   // testler alafabetik sıraya göre çalışır
+        System.out.println("Test 3");
     }
 
-    @Test(enabled = false) //@Ignore
-    public void test2() {
-        System.out.println("Test2");
+    @Test (priority = 3)
+    public void test1()  {
+        System.out.println("Test 1");
     }
 
-    @Test(priority = 1)
-    public void test3() {
-        System.out.println("Test3");
+    @Test (enabled = false)
+    public void test2(){
+        System.out.println("Test 2");
     }
 
-    @Test(priority = 2) //priority girilmez ise default 0 olarak ilk o calisir
-    public void test4() {
-        System.out.println("Test4");
+
+    @Test // priority girilmez ise default olarak "0" atanır ve ilk o test çalışır
+    public void test4(){
+        System.out.println("Test 4");
     }
 
     @BeforeMethod
-    public void beforeMethod() {
-        System.out.println("Before method");
+    public void setUp() {
+        System.out.println("Before Method");
     }
 
     @AfterMethod
-    public void afterMethod() {
+    public void tearDown(){
         System.out.println("After Method");
     }
 
     @BeforeClass
-    public void beforeClass() {
-        System.out.println("Before class");
+    public void setUpClass(){
+        System.out.println("Before Class");
     }
 
     @AfterClass
-    public void afterClass() {
-        System.out.println("After class");
+    public void tearDownClass(){
+        System.out.println("After Class");
     }
 
     @BeforeSuite
-    public void beforeSuite() {
+    public void beforeSuite(){
         System.out.println("Before Suite");
     }
 
     @AfterSuite
-    public void afterSuite() {
+    public void afterSuite(){
         System.out.println("After Suite");
     }
 
     @BeforeTest
-    public void beforeTest() {
+    public void beforeTest(){
         System.out.println("Before Test");
     }
 
     @AfterTest
-    public void afterTest() {
-        System.out.println("After test");
+    public void afterTest(){
+        System.out.println("After Test");
     }
 }

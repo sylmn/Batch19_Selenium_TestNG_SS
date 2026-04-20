@@ -4,6 +4,7 @@ import com.eurotech.pages.DashboardPage;
 import com.eurotech.pages.LoginPage;
 import com.eurotech.tests.TestBase;
 import com.eurotech.utilities.BrowserUtils;
+import com.eurotech.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -111,7 +112,7 @@ public class C01_DashboardTest extends TestBase {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.navigateToTabs("Components", "Modal");
 
-        String actualURL = driver.getCurrentUrl();
+        String actualURL = Driver.get().getCurrentUrl();
         String expectedURL = "https://sdettest.eurotechstudy.eu/components/modal";
 
         Assert.assertEquals(actualURL, expectedURL);

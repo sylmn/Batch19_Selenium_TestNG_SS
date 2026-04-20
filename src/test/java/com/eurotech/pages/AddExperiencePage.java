@@ -1,6 +1,7 @@
 package com.eurotech.pages;
 
 import com.eurotech.utilities.Driver;
+import com.github.javafaker.Faker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -8,37 +9,36 @@ import org.openqa.selenium.support.FindBy;
 
 public class AddExperiencePage extends BasePage {
 
-    @FindBy(xpath = "//label[text()='Job Title *']")
-    public WebElement jobTitleHdr;
-
+    Faker faker = new Faker();
     @FindBy(xpath = "//div/button[text()='Add Experience']")
     public WebElement addExperienceBtn;
 
-    @FindBy(xpath = "//input[@placeholder='Job Title *']")
-    public WebElement jobTitleBox;
+    @FindBy(css = "input#job")
+    public WebElement jobTitle;
 
     @FindBy(id = "todateexp")
     public WebElement toDateBox;
 
     @FindBy(xpath = "(//textarea[@id='description'])[1]")
-    public WebElement descriptionBox;
+    public WebElement jobDescriptionBox;
 
-    String jobTitle = "SDET";
-    String company = "ABC";
-    String location = "Izmir";
-    String fromDate = "10102013";
-    String toDate = "10102016";
-    String descr = "Job is very easy";
+    public String jobTitleName = faker.job().title();
+    String companyName = faker.company().name();
+    String locationName = faker.address().cityName();
+    String fromDate = "11112020";
+    String toDate = "10102022";
+    String jobDescription = faker.lorem().characters(25, false, false);
 
-    public void fillExperienceForm() {
+    public void addExperienceMtd() {
         Actions actions = new Actions(Driver.get());
-        actions.click(jobTitleBox)
-                .sendKeys(jobTitle + Keys.TAB)
-                .sendKeys(company + Keys.TAB)
-                .sendKeys(location + Keys.TAB)
+
+        actions.click(jobTitle)
+                .sendKeys(jobTitleName + Keys.TAB)
+                .sendKeys(companyName + Keys.TAB)
+                .sendKeys(locationName + Keys.TAB)
                 .sendKeys(fromDate + Keys.TAB + Keys.TAB).perform();
         toDateBox.sendKeys(toDate);
-        actions.click(descriptionBox)
-                .sendKeys(descr + Keys.TAB + Keys.ENTER).perform();
+
+        actions.click(jobDescriptionBox).sendKeys(jobDescription + Keys.TAB + Keys.ENTER).perform();
     }
 }
